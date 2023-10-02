@@ -4,7 +4,7 @@
     "description": "test product one description",
     "image": "/images/jillian-mood-ring.jpg",
     "price": 1.0,
-    "id": "1"
+    "id": "price_1NwqZIClkyn20Z8REo02Agy1"
   },
 
   {
@@ -12,14 +12,6 @@
     "description": "test product two description",
     "image": "/images/coffee.jpg",
     "price": 1.0,
-    "id": "2"
-  },
-
-  {
-    "title": "test product three",
-    "description": "test product three description",
-    "image": "/images/angel-boy.jpg",
-    "price": 1.0,
-    "id": "price_1NwpyEClkyn20Z8Rfh06TdDh"
+    "id": "price_1NwqahClkyn20Z8RjTKzfEgq"
   }
 ]
