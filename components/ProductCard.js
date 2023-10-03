@@ -1,21 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { initCheckout } from '@/lib/payments'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, addToCart }) => {
   const { image, title, description, price, id } = product
 
-  const handleClick = (id) => {
-    initCheckout({
-      lineItems: [
-        {
-          price: id,
-          quantity: 1,
-        },
-      ],
-    })
-  }
   return (
     <li>
       <div
@@ -24,11 +13,14 @@ const ProductCard = ({ product }) => {
         rel="noopener noreferrer"
       >
         <Image src={image} width="100" height="100" alt={title}></Image>
+
         <h2 className={`mb-3 text-2xl font-semibold`}>{title}</h2>
+
         <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-          {description} {price}
+          {description} {price.toString()}
         </p>
-        <button onClick={handleClick(id)}>buy now</button>
+
+        <button onClick={() => addToCart(id)}>add to cart</button>
       </div>
     </li>
   )
