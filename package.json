@@ -12,7 +12,8 @@
     "@stripe/stripe-js": "^2.1.7",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "classnames": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "latest",
