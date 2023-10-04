@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
   const cart = useCartState()
   return (
-    <html lang="en">
+    <html lang="en" className="bg-beige">
       <CartContext.Provider value={cart}>
         <body className={inter.className}>{children}</body>
       </CartContext.Provider>

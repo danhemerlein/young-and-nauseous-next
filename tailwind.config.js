@@ -16,6 +16,7 @@ module.exports = {
     colors: {
       ink: '#000',
       reverse: '#fff',
+      beige: '#FFE6D8',
     },
   },
   plugins: [],
