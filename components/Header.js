@@ -2,7 +2,8 @@
 
 import { useCart } from '@/hooks/useCart'
 import MiniCart from './MiniCart'
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import Button from './Button'
 
 const Header = () => {
   const { totalItems } = useCart()
@@ -12,14 +13,26 @@ const Header = () => {
     setOpen(!open)
   }
 
+  const closeAllModals = useCallback((e) => {
+    if (e.keyCode === 27) {
+      setOpen(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('keydown', closeAllModals)
+  }, [setOpen, closeAllModals])
+
   return (
-    <header className="fixed ml-[-2rem] top-0 w-[calc(100%+2rem)] flex bg-reverse justify-between p-4 border-ink broder-solid border-2 border-top-0 border-right-0 border-left-0 z-10">
-      <h1 className="text-ink ml-4">young and nauseous</h1>
+    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border-2 border-t-0 border-r-0 border-l-0 z-10">
+      <h1 className="text-ink">young and nauseous</h1>
 
       {totalItems > 0 && (
-        <button className="text-ink mr-4" onClick={handleClick}>
-          cart {totalItems}
-        </button>
+        <Button
+          handler={handleClick}
+          text={`cart (${totalItems})`}
+          classes="!border-0 !p-0"
+        />
       )}
 
       <MiniCart open={open} handleClick={handleClick} />

@@ -1,6 +1,7 @@
 import { useCart } from '@/hooks/useCart'
 import CartItems from './CartItems'
 import cn from 'classnames'
+import Button from './Button'
 
 const MiniCart = ({ open, handleClick }) => {
   const { checkout, subtotal } = useCart()
@@ -11,12 +12,7 @@ const MiniCart = ({ open, handleClick }) => {
         !open ? 'translate-x-full right-unset' : 'translate-x-0'
       )}
     >
-      <button
-        className="bg-reverse text-ink border-solid border-ink border-2 px-4 py-2"
-        onClick={handleClick}
-      >
-        close
-      </button>
+      <Button handler={handleClick} text="close" />
 
       <div className="flex-grow flex justify-between flex-col">
         <CartItems />
@@ -24,12 +20,7 @@ const MiniCart = ({ open, handleClick }) => {
         <h3 className="text-ink mb-4">subtotal: ${subtotal}</h3>
       </div>
 
-      <button
-        className="bg-reverse text-ink border-solid border-ink border-2 px-4 py-2 hover:bg-ink hover:text-reverse"
-        onClick={checkout}
-      >
-        checkout
-      </button>
+      <Button handler={checkout} text="checkout" />
     </div>
   )
 }
