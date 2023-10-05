@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="p-4 mt-[56px]">
+      <main className="p-4 mt-[78px]">
         <HomePage />
       </main>
       <Footer />

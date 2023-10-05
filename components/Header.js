@@ -24,16 +24,25 @@ const Header = () => {
   }, [setOpen, closeAllModals])
 
   return (
-    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border-2 border-t-0 border-r-0 border-l-0 z-10">
-      <h1 className="text-ink">young and nauseous</h1>
+    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border-2 border-t-0 border-r-0 border-l-0 z-10 items-center">
+      <h1 className="text-ink text-xl">young and nauseous</h1>
 
-      {totalItems > 0 && (
+      <div className="flex gap-4">
         <Button
-          handler={handleClick}
-          text={`cart (${totalItems})`}
-          classes="!border-0 !p-0"
+          classes="border-2 rounded-lg "
+          text="nausea network"
+          playButton={true}
         />
-      )}
+
+        {totalItems > 0 && (
+          <Button
+            handler={handleClick}
+            text={`cart (${totalItems})`}
+            classes="!border-0 !p-0"
+            noHoverState={true}
+          />
+        )}
+      </div>
 
       <MiniCart open={open} handleClick={handleClick} />
     </header>
