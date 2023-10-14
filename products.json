@@ -1,17 +1,27 @@
 [
   {
-    "title": "mood ring / jillian stems",
+    "title": "mood ring",
     "description": "",
     "image": "/images/jillian-mood-ring.jpg",
     "price": 1.0,
-    "id": "price_1NwqZIClkyn20Z8REo02Agy1"
+    "id": "price_1NwqZIClkyn20Z8REo02Agy1",
+    "type": "stems"
+  },
+  {
+    "title": "jillian",
+    "description": "",
+    "image": "/images/jillian-mood-ring.jpg",
+    "price": 1.0,
+    "id": "price_1NwqZIClkyn20Z8REo02Agy1",
+    "type": "stems"
   },
 
   {
-    "title": "angel boy stems",
+    "title": "angel boy",
     "description": "",
     "image": "/images/angel-boy.jpg",
     "price": 1.0,
-    "id": "price_1NwqahClkyn20Z8RjTKzfEgq"
+    "id": "price_1NwqahClkyn20Z8RjTKzfEgq",
+    "type": "stems"
   }
 ]

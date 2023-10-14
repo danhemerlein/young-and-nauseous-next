@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <CartContext.Provider value={cart}>
-        <body className="bg-beige">{children}</body>
+        <body>{children}</body>
       </CartContext.Provider>
     </html>
   )

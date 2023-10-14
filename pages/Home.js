@@ -8,17 +8,17 @@ const Index = () => {
   const { addToCart } = useCart()
 
   return (
-    <div className="min-h-[calc(100vh-78px)] grid gap-4 grid-cols-2">
+    <div className="min-h-[calc(100vh-78px)] flex flex-col">
       <div className="w-full flex items-center justify-center">
         <Image
-          src={'/images/building.jpg'}
+          src={'/images/ascii-text-art.png'}
           width="900"
           height="900"
-          alt={'building'}
+          alt={'young and nauseous'}
         ></Image>
       </div>
 
-      <ul className="grid grid-cols-2 gap-4">
+      <ul>
         {products.map((product) => {
           return (
             <ProductCard
@@ -29,6 +29,15 @@ const Index = () => {
           )
         })}
       </ul>
+
+      {/* <div className="w-full flex items-center justify-center">
+        <Image
+          src={'/images/building.jpg'}
+          width="900"
+          height="900"
+          alt={'building'}
+        ></Image>
+      </div> */}
     </div>
   )
 }
