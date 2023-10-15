@@ -1,15 +1,18 @@
 import { useCart } from '@/hooks/useCart'
+import Button from './Button'
 
 const CartItems = () => {
-  const { cart } = useCart()
+  const { cart, updateItem } = useCart()
+  console.log(cart)
 
   return (
     <ul className="flex flex-col gap-4 mt-4">
       {Object.keys(cart.products).map((key) => {
         return (
           <li key={key} className="flex justify-between">
-            <p>{cart.products[key].id}</p>
-            <p>{cart.products[key].quantity}</p>
+            <p>{cart.products[key].title}</p>
+
+            <Button handler={() => updateItem(key, 0)} text="remove"></Button>
           </li>
         )
       })}

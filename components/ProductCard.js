@@ -14,7 +14,7 @@ const ProductCard = ({ product, addToCart }) => {
 
       <div className="flex w-[50%] gap-2 items-center">
         <Price price={price} />
-        <Button handler={() => addToCart(id)} text="add to cart" />
+        <Button handler={() => addToCart(id, title)} text="add to cart" />
       </div>
     </li>
   )

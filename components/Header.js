@@ -31,14 +31,12 @@ const Header = () => {
         playButton={true}
       />
 
-      {totalItems > 0 && (
-        <Button
-          handler={handleClick}
-          text={`cart (${totalItems})`}
-          classes="!border-0 !p-0"
-          noHoverState={true}
-        />
-      )}
+      <Button
+        handler={handleClick}
+        text={`cart (${totalItems})`}
+        classes="!border-0 !p-0"
+        noHoverState={true}
+      />
 
       <MiniCart open={open} handleClick={handleClick} />
     </header>

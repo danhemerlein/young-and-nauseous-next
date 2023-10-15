@@ -40,15 +40,32 @@ export const useCartState = () => {
     return acc + quantity
   }, 0)
 
-  const addToCart = (id) => {
+  const addToCart = (id, title) => {
     updateCart((prev) => {
       let cartState = { ...prev }
       if (cartState.products[id]) {
         cartState.products[id].quantity += 1
+        cart
       } else {
         cartState.products[id] = {
           id,
+          title,
           quantity: 1,
+        }
+      }
+      return cartState
+    })
+  }
+
+  const updateItem = (id, quantity) => {
+    updateCart((prev) => {
+      let cartState = { ...prev }
+
+      if (quantity === 0) {
+        delete cartState.products[id]
+      } else {
+        if (cartState.products[id]) {
+          cartState.products[id].quantity = quantity
         }
       }
       return cartState
@@ -72,6 +89,7 @@ export const useCartState = () => {
     totalItems,
     checkout,
     addToCart,
+    updateItem,
   }
 }
 

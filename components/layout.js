@@ -1,14 +1,13 @@
-import HomePage from '@/pages/Home'
+'use client'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import '@/styles/globals.css'
 
-export default function Home() {
+export default function RootLayout({ children }) {
   return (
     <>
       <Header />
-      <main className="p-4 mt-[78px]">
-        <HomePage />
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   )
