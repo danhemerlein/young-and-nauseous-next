@@ -8,7 +8,7 @@ const MiniCart = ({ open, handleClick }) => {
   return (
     <div
       className={cn(
-        'fixed top-0 right-0 min-h-screen bg-reverse transition-cubic-bezier p-4 duration-500 w-[320px] flex border-solid border-ink border-2 border-t-0 border-b-0 border-r-0 flex-col',
+        'fixed top-0 right-0 min-h-screen bg-reverse transition-cubic-bezier p-4 duration-500 w-[320px] flex border-solid border-ink border border-t-0 border-b-0 border-r-0 flex-col',
         !open ? 'translate-x-full right-unset' : 'translate-x-0'
       )}
     >
@@ -17,7 +17,7 @@ const MiniCart = ({ open, handleClick }) => {
       <div className="flex-grow flex justify-between flex-col">
         <CartItems />
 
-        <h3 className="text-ink mb-4">subtotal: ${subtotal}</h3>
+        <h3 className="mb-4 text-md">subtotal: ${subtotal}</h3>
       </div>
 
       <Button handler={checkout} text="checkout" />

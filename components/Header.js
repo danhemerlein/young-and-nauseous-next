@@ -24,12 +24,8 @@ const Header = () => {
   }, [setOpen, closeAllModals])
 
   return (
-    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border-2 border-t-0 border-r-0 border-l-0 z-10 items-center">
-      <Button
-        classes="border-2 rounded-lg "
-        text="nausea network"
-        playButton={true}
-      />
+    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border border-t-0 border-r-0 border-l-0 z-10 items-center">
+      <Button classes="rounded-lg " text="nausea network" playButton={true} />
 
       <Button
         handler={handleClick}

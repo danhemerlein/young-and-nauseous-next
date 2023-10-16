@@ -1,27 +1,24 @@
 [
   {
-    "title": "mood ring",
+    "title": "mood ring / jillian",
     "description": "",
-    "image": "/images/jillian-mood-ring.jpg",
     "price": 1.0,
-    "id": "price_1NwqZIClkyn20Z8REo02Agy1",
+    "id": "price_1O1varClkyn20Z8RPKHSdsmO",
     "type": "stems"
   },
   {
-    "title": "jillian",
+    "title": "four hundred coffees",
     "description": "",
-    "image": "/images/jillian-mood-ring.jpg",
     "price": 1.0,
-    "id": "price_1NwqZIClkyn20Z8REo02Agy1",
+    "id": "price_1O1vaVClkyn20Z8RRaljwQz2",
     "type": "stems"
   },
 
   {
     "title": "angel boy",
     "description": "",
-    "image": "/images/angel-boy.jpg",
     "price": 1.0,
-    "id": "price_1NwqahClkyn20Z8RjTKzfEgq",
+    "id": "price_1O1vZGClkyn20Z8RnMRZWh7J",
     "type": "stems"
   }
 ]

@@ -10,7 +10,7 @@ const CartItems = () => {
       {Object.keys(cart.products).map((key) => {
         return (
           <li key={key} className="flex justify-between">
-            <p>{cart.products[key].title}</p>
+            <p className="text-sm">{cart.products[key].title}</p>
 
             <Button handler={() => updateItem(key, 0)} text="remove"></Button>
           </li>
