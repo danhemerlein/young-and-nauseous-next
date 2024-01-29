@@ -3,7 +3,6 @@ import Button from './Button'
 
 const CartItems = () => {
   const { cart, updateItem } = useCart()
-  console.log(cart)
 
   return (
     <ul className="flex flex-col gap-4 mt-4">

@@ -20,6 +20,8 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
+    "postcss-import": "latest",
+    "postcss-loader": "latest",
     "tailwindcss": "latest"
   }
 }

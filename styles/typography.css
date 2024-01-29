@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Lack-Italic';
+  src: local('Lack-Italic'), local('Lack-Italic'),
+    url('/fonts/lack-italic.woff2') format('woff2'),
+    url('/fonts/lack-italic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lack-Regular';
+  src: local('Lack-Regular'), local('Lack-Regular'),
+    url('/fonts/lack-regular.woff2') format('woff2'),
+    url('/fonts/lack-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  h1,
+  .h1 {
+    @apply font-Lack-Italic;
+  }
+
+  body,
+  .body {
+    @apply font-Lack-Regular;
+  }
+}
