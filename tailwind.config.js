@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       ['lack']: ['var(--font-lack)'],
+      ['baroque']: ['var(--font-baroque)'],
     },
     extend: {
       backgroundImage: {

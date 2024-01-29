@@ -15,6 +15,16 @@ const lack = localFont({
   variable: '--font-lack',
 })
 
+const baroque = localFont({
+  src: [
+    {
+      path: '../public/fonts/young-baroque.ttf',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-baroque',
+})
+
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero/Hero'
@@ -23,12 +33,11 @@ import '@/styles/globals.css'
 export default function RootLayout({ children }) {
   return (
     <>
-      <main className={`${lack.variable} font-lack`}>
+      <main className={`${lack.variable} ${baroque.variable}`}>
         <Hero />
-        {/* <Header /> */}
+        {children}
+        <Footer />
       </main>
-      {children}
-      <Footer />
     </>
   )
 }
