@@ -138,6 +138,7 @@ table {
   border-spacing: 0;
 }
 
+svg,
 img {
   max-width: 100%;
   width: 100%;

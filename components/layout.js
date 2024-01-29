@@ -33,7 +33,7 @@ import '@/styles/globals.css'
 export default function RootLayout({ children }) {
   return (
     <>
-      <main className={`${lack.variable} ${baroque.variable}`}>
+      <main className={`${lack.variable} ${baroque.variable} px-24 bg-beige`}>
         <Hero />
         {children}
         <Footer />

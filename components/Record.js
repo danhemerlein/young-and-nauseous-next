@@ -1,7 +1,7 @@
-const Record = (props) => {
+const Record = () => {
   return (
-    <div className="sticky top-0 bg-beige flex items-center justify-center p-6 h-screen">
-      <canvas className="h-full w-full max-w-[700px] max-h-[700px]"></canvas>
+    <div className="sticky top-0 flex items-center justify-center  h-screen">
+      <canvas className="h-full w-full"></canvas>
     </div>
   )
 }
