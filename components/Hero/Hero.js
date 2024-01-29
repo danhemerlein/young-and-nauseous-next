@@ -2,7 +2,7 @@ import './Hero.css'
 
 const Hero = () => {
   return (
-    <div className="hero flex items-center justify-center h-screen">
+    <div className="hero flex italic items-center justify-center h-screen">
       <h1 className=" text-center">
         <span className="block">young</span>
         <span className="block">and</span>

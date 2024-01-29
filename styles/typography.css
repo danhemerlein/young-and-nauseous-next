@@ -21,11 +21,11 @@
 @layer base {
   h1,
   .h1 {
-    @apply font-Lack-Italic;
+    /* @apply font-Lack-Italic; */
   }
 
   body,
   .body {
-    @apply font-Lack-Regular;
+    /* @apply font-Lack-Regular; */
   }
 }

@@ -7,8 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      ['Lack-Italic']: 'Lack-Italic',
-      ['Lack-Regular']: 'Lack-Regular',
+      ['lack']: ['var(--font-lack)'],
     },
     extend: {
       backgroundImage: {
