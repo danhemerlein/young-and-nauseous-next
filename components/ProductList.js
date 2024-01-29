@@ -1,5 +1,5 @@
 import ProductCard from '@/components/ProductCard'
-import Record from '@/components/Record/Record'
+import Record from '@/components/Record'
 import { useCart } from '@/hooks/useCart'
 
 const ProductList = ({ array }) => {
@@ -10,11 +10,12 @@ const ProductList = ({ array }) => {
       <Record />
 
       <ul>
-        {array.map((product) => {
+        {array.map((product, key) => {
           return (
             <ProductCard
               key={product.id}
               product={product}
+              index={key}
               addToCart={addToCart}
             />
           )
