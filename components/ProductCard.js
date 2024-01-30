@@ -3,33 +3,20 @@
 import Button from './Button'
 import Price from './Price'
 
-const ProductCard = ({ product, addToCart }) => {
-  const { title, price, id, type } = product
-
-  const renderEmoji = (type) => {
-    switch (type) {
-      case 'stems':
-        return '💿'
-      case 'samples':
-        return '📦'
-      case 'other':
-        return '🎙️'
-      default:
-        return '📀'
-    }
-  }
+const ProductCard = ({ product, addToCart, index }) => {
+  const { title, price, id } = product
 
   return (
-    <li className="flex justify-between items-center my-4 max-w-[400px]">
-      <div className="flex w-[50%] items-center">
-        <span className="mr-4 block">{renderEmoji(type)}</span>
-        <h2 className="text-md whitespace-nowrap">{title}</h2>
-      </div>
-
-      <div className="flex w-[50%] gap-2 items-center">
-        <Price price={price} />
-        <Button handler={() => addToCart(id, title)} text="add to cart" />
-      </div>
+    <li className=" text-ink flex flex-col justify-center items-center h-screen font-lack gap-4">
+      <h2 className="font-baroque lowercase text-[124px] relative">
+        {title}
+        <sup className="text-sm font-lack absolute right-[-45px] top-0 border-ink border rounded-full border-solid p-4 h-[30px] w-[30px] flex items-center justify-center">
+          {index + 1}
+        </sup>
+      </h2>
+      <a className="cursor-pointer">free download</a>
+      {/* <Price price={price} /> */}
+      {/* <Button handler={() => addToCart(id, title)} text="add to cart" /> */}
     </li>
   )
 }
