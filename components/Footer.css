@@ -1,0 +1,7 @@
+footer h2 {
+  font-size: clamp(4rem, 0.331rem + 13.97vw, 25rem);
+}
+
+footer h3 {
+  font-size: clamp(4rem, 0.331rem + 20vw, 35rem);
+}
