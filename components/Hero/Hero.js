@@ -1,6 +1,7 @@
 import './Hero.css'
 
 import dynamic from 'next/dynamic'
+import useWindowSize from '@/hooks/useWindowSize'
 
 const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
   ssr: false,
@@ -11,20 +12,28 @@ const Hero = () => {
   let lack
   let graphic
 
+  let isMobile = useWindowSize()
+
+  let canvasWidth = isMobile ? 300 : 1200
+  let canvasHeight = isMobile ? 300 : 300
+  let textPositionX = isMobile ? 150 : 600
+  let textPositionY = isMobile ? 150 : 300
+  let textSize = isMobile ? 50 : 100
+
   const preload = (p5) => {
     baroque = p5.loadFont('/fonts/young-baroque.ttf')
     lack = p5.loadFont('/fonts/lack-regular.woff')
   }
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(1200, 600).parent(canvasParentRef)
-    graphic = p5.createGraphics(1200, 600)
+    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef)
+    graphic = p5.createGraphics(canvasWidth, canvasHeight)
     graphic.fill('black')
-    graphic.textSize(100)
+    graphic.textSize(textSize)
     graphic.textAlign(p5.CENTER, p5.CENTER)
     graphic.textFont(baroque)
     // graphic.textFont(lack)
-    graphic.text('young and nauseous', 600, 300)
+    graphic.text('young and nauseous', textPositionX, textPositionY)
   }
 
   const draw = (p5) => {
