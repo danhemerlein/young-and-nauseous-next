@@ -9,20 +9,20 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 const Hero = () => {
   let baroque
-  let lack
   let graphic
 
   let isMobile = useWindowSize()
 
   let canvasWidth = isMobile ? 300 : 1200
-  let canvasHeight = isMobile ? 300 : 300
+  let canvasHeight = isMobile ? 300 : 600
+
   let textPositionX = isMobile ? 150 : 600
   let textPositionY = isMobile ? 150 : 300
+
   let textSize = isMobile ? 50 : 100
 
   const preload = (p5) => {
     baroque = p5.loadFont('/fonts/young-baroque.ttf')
-    lack = p5.loadFont('/fonts/lack-regular.woff')
   }
 
   const setup = (p5, canvasParentRef) => {
@@ -32,7 +32,6 @@ const Hero = () => {
     graphic.textSize(textSize)
     graphic.textAlign(p5.CENTER, p5.CENTER)
     graphic.textFont(baroque)
-    // graphic.textFont(lack)
     graphic.text('young and nauseous', textPositionX, textPositionY)
   }
 
@@ -64,7 +63,7 @@ const Hero = () => {
 
   return (
     <div className="hero  flex items-center justify-center h-screen">
-      <Sketch preload={preload} setup={setup} draw={draw} />
+      {/* <Sketch preload={preload} setup={setup} draw={draw} /> */}
     </div>
   )
 }

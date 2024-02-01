@@ -25,12 +25,13 @@ const baroque = localFont({
   variable: '--font-baroque',
 })
 
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero/Hero'
+import AuthModal from '@/components/AuthModal'
 import '@/styles/globals.css'
 
 export default function RootLayout({ children }) {
+
   return (
     <>
       <main
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
       >
         <Hero />
         {children}
+        <AuthModal className={`${lack.variable} ${baroque.variable}`} />
         <Footer />
       </main>
     </>

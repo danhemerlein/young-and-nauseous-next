@@ -1,9 +1,13 @@
 import ProductCard from '@/components/ProductCard'
 import Record from '@/components/Record'
-import { useCart } from '@/hooks/useCart'
+import { useAuth } from '@/hooks/useAuth'
+// import { useCart } from '@/hooks/useCart'
 
 const ProductList = ({ array }) => {
-  const { addToCart } = useCart()
+  // const { addToCart } = useCart()
+  const { session } = useAuth()
+
+  console.log(session);
 
   return array.length > 0 ? (
     <div className="lg:grid lg:grid-cols-2">
@@ -16,7 +20,8 @@ const ProductList = ({ array }) => {
               key={product.id}
               product={product}
               index={key}
-              addToCart={addToCart}
+              session={session}
+              // addToCart={addToCart}
             />
           )
         })}
