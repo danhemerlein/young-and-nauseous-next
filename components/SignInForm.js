@@ -24,7 +24,7 @@ const SignInForm = ({ setCreatingAccount }) => {
   return (
     <form
       onSubmit={(e) => {
-        e.preventDefault
+        e.preventDefault()
         handleLogin(email, password)
       }}
     >
@@ -38,7 +38,7 @@ const SignInForm = ({ setCreatingAccount }) => {
         </label>
 
         <input
-          className="mb-4 w-full border-2 border-red p-2 rounded-sm bg-beige"
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           type="email"
           id="signInEmail"
           placeholder="email"
@@ -51,7 +51,7 @@ const SignInForm = ({ setCreatingAccount }) => {
         </label>
 
         <input
-          className="mb-8 w-full border-2 border-red p-2 rounded-sm bg-beige"
+          className="mb-8 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           type="password"
           id="signInPassword"
           placeholder="your password"
@@ -59,7 +59,7 @@ const SignInForm = ({ setCreatingAccount }) => {
         />
 
         <button
-          className="border-2 border-red p-2 rounded-sm cursor-pointer transition-cubic-bezier bg-beige text-ink hover:bg-ink hover:text-reverse w-full"
+          className="border-2 border-ink p-2 rounded-sm cursor-pointer transition-cubic-bezier bg-reverse text-ink hover:bg-ink hover:text-reverse w-full"
           type="submit"
           disabled={loading}
         >
@@ -68,7 +68,8 @@ const SignInForm = ({ setCreatingAccount }) => {
 
         <button
           onClick={() => setCreatingAccount(true)}
-          className="text-center mt-8"
+          type="button"
+          className="text-center mt-8 underline cursor-pointer"
         >
           or create an account
         </button>

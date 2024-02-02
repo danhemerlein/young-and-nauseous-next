@@ -28,15 +28,19 @@ const baroque = localFont({
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero/Hero'
 import AuthModal from '@/components/AuthModal'
+import { useAuth } from '@/hooks/useAuth'
 import '@/styles/globals.css'
+import Header from './Header'
 
 export default function RootLayout({ children }) {
+  const { session } = useAuth()
 
   return (
     <>
       <main
         className={`${lack.variable} ${baroque.variable} px-4 lg:px-24 bg-beige`}
       >
+        {session && <Header />}
         <Hero />
         {children}
         <AuthModal className={`${lack.variable} ${baroque.variable}`} />

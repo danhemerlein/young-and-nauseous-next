@@ -62,7 +62,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="hero  flex items-center justify-center h-screen">
+    <div className="hero flex items-center justify-center h-screen">
       {/* <Sketch preload={preload} setup={setup} draw={draw} /> */}
     </div>
   )

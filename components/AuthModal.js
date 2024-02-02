@@ -16,7 +16,7 @@ const Auth = ({ className }) => {
       onRequestClose={toggleModal}
       className={{
         base: cn(
-          'transition-cubic-bezier relative opacity-0 duration-500 flex items-center justify-center bg-ink text-reverse min-h-[500px] w-[500px] border-2 border-solid border-red font-lack p-24',
+          'transition-cubic-bezier relative opacity-0 duration-500 flex items-center justify-center bg-reverse text-ink min-h-[500px] w-[500px] border-2 border-solid border-ink font-lack p-24',
           className
         ),
         afterOpen: cn('!opacity-100', '!translate-y-0'),

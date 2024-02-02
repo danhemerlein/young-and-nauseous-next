@@ -1,9 +1,10 @@
 'use client'
 
-import { useModal } from "@/hooks/useModal"
+import { useModal } from '@/hooks/useModal'
+import { removeSpecialCharactersAndHandleize } from '@/lib/helper-functions'
 
-const ProductCard = ({ product, addToCart, index, session }) => {
-  const { title } = product
+const ProductCard = ({ product, index, session }) => {
+  const { title, bpm, isMoodRing } = product
   const { toggleModal } = useModal()
 
   return (
@@ -15,9 +16,18 @@ const ProductCard = ({ product, addToCart, index, session }) => {
           {index + 1}
         </sup>
       </h2>
+      <p>{bpm}bpm</p>
       <a className="cursor-pointer z-10">free download</a>
-      {!session && <button onClick={toggleModal} className="text-sm z-10">log in to create a mood ring</button>}
-      {/* <Button handler={() => addToCart(id, title)} text="add to cart" /> */}
+      {/* need to avoid a nested ternary here */}
+      {isMoodRing ? (
+        !session ? (
+          <button onClick={toggleModal} className="text-sm z-10">
+            log in to create a mood ring
+          </button>
+        ) : (
+          <p className="text-sm z-10">create a mood ring</p>
+        )
+      ) : null}
     </li>
   )
 }

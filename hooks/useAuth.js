@@ -5,7 +5,7 @@ import { supabase } from '@/supabaseClient'
 export const AuthContext = createContext()
 
 export const useAuthState = () => {
-  const [, setSession] = useState(null)
+  const [session, setSession] = useState(null)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -17,8 +17,7 @@ export const useAuthState = () => {
     })
   }, [])
 
-  const auth = useContext(AuthContext)
-  return auth
+  return session
 }
 
 export const useAuth = () => {
