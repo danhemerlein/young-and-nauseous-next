@@ -26,7 +26,7 @@ const baroque = localFont({
 })
 
 import Footer from '@/components/Footer'
-import Hero from '@/components/Hero/Hero'
+import Hero from '@/components/Hero'
 import AuthModal from '@/components/AuthModal'
 import '@/styles/globals.css'
 import Header from './Header'
