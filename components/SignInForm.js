@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useModal } from '@/hooks/useModal'
 import { supabase } from '@/supabaseClient'
+import Input from '@/components/Input'
 
 const SignInForm = ({ setCreatingAccount }) => {
   const [loading, setLoading] = useState(false)
@@ -32,32 +33,27 @@ const SignInForm = ({ setCreatingAccount }) => {
       }}
     >
       <fieldset>
-        <legend className="mb-4 text-center">
+        <legend className="text-lg mb-4 text-center">
           sign in with email and password
         </legend>
 
-        <label htmlFor="signInEmail" className="block mb-2">
-          email
-        </label>
-
-        <input
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+        <Input
+          label="email"
           type="email"
           id="signInEmail"
           placeholder="email"
           value={email}
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="signInPassword" className="block mb-2">
-          password
-        </label>
-
-        <input
-          className="mb-8 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+        <Input
+          label="password"
           type="password"
           id="signInPassword"
           placeholder="your password"
+          value={password}
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           onChange={(e) => setPassword(e.target.value)}
         />
 

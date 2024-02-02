@@ -1,14 +1,20 @@
 import { useState } from 'react'
 import { useModal } from '@/hooks/useModal'
 import { supabase } from '@/supabaseClient'
+import Input from '@/components/Input'
 
 const SignUpForm = ({ setCreatingAccount }) => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const { toggleModal } = useModal()
 
   const handleSignUp = async (email, password) => {
+    if (password !== passwordConfirmation) {
+      alert('Passwords do not match')
+      return
+    }
     try {
       setLoading(true)
       const { data, error } = await supabase.auth.signUp({
@@ -23,6 +29,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
       toggleModal()
     }
   }
+
   return (
     <form
       onSubmit={(e) => {
@@ -31,34 +38,39 @@ const SignUpForm = ({ setCreatingAccount }) => {
       }}
     >
       <fieldset>
-        <legend className="mb-4 text-center">create account</legend>
+        <legend className="text-lg mb-4 text-center">create account</legend>
 
-        <label htmlFor="signUpEmail" className="block mb-2">
-          email
-        </label>
-
-        <input
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+        <Input
+          label="email"
           type="email"
           id="signUpEmail"
           placeholder="email"
           value={email}
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label htmlFor="signUpPassword" className="block mb-2">
-          password
-        </label>
-
-        <input
-          className="mb-8 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+        <Input
+          label="password"
           type="password"
           id="signUpPassword"
-          placeholder="your password"
+          placeholder="password"
+          value={password}
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <p className="my-4">password must be at least 6 characters</p>
+        <Input
+          label="re-enter password"
+          type="password"
+          id="signUpPasswordConfirmation"
+          placeholder="password"
+          value={passwordConfirmation}
+          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
+        />
+
+        <p className="mb-8 text-sm">password must be at least 6 characters</p>
 
         <button
           className="border-2 border-ink p-2 rounded-sm cursor-pointer transition-cubic-bezier bg-reverse text-ink hover:bg-ink hover:text-reverse w-full"
