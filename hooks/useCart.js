@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { initCheckout } from '@/lib/payments'
-import products from '@/products.json'
+// import products from '@/products.json'
 
 const defaultCart = {
   products: {},

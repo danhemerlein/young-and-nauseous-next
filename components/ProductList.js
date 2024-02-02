@@ -1,29 +1,27 @@
 import ProductCard from '@/components/ProductCard'
 import Record from '@/components/Record'
-import { useCart } from '@/hooks/useCart'
+import { useAuth } from '@/hooks/useAuth'
 
-const ProductList = ({ array }) => {
-  const { addToCart } = useCart()
+const ProductList = ({ products }) => {
+  const { session } = useAuth()
 
-  return array.length > 0 ? (
+  return (
     <div className="lg:grid lg:grid-cols-2">
       <Record />
 
       <ul>
-        {array.map((product, key) => {
+        {products.map((product, key) => {
           return (
             <ProductCard
               key={product.id}
               product={product}
               index={key}
-              addToCart={addToCart}
+              session={session}
             />
           )
         })}
       </ul>
     </div>
-  ) : (
-    <p className="text-md my-4">coming soon</p>
   )
 }
 

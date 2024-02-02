@@ -1,40 +1,47 @@
 'use client'
-
-import { useCart } from '@/hooks/useCart'
-import MiniCart from './MiniCart'
-import { useState, useCallback, useEffect } from 'react'
-import Button from './Button'
+import { useCallback, useRef } from 'react'
+import { useState } from 'react'
+import Account from './Account'
+import AccountMenu from './AccountMenu'
+import { useAuth } from '@/hooks/useAuth'
+import useOnClickOutside from '@/hooks/useClickOutside'
 
 const Header = () => {
-  const { totalItems } = useCart()
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const openMenu = () => setMenuOpen(true)
+  const closeMenu = () => setMenuOpen(false)
+  const toggleModal = () => setMenuOpen(!menuOpen)
+  const { session } = useAuth()
 
-  const handleClick = () => {
-    setOpen(!open)
-  }
+  const componentRef = useRef()
 
-  const closeAllModals = useCallback((e) => {
-    if (e.keyCode === 27) {
-      setOpen(false)
-    }
-  }, [])
+  const handleClickOutside = useCallback(() => closeMenu(), [componentRef])
 
-  useEffect(() => {
-    window.addEventListener('keydown', closeAllModals)
-  }, [setOpen, closeAllModals])
+  useOnClickOutside(componentRef, handleClickOutside)
 
   return (
-    <header className="fixed top-0 w-full flex bg-reverse justify-between p-4 border-ink broder-solid border border-t-0 border-r-0 border-l-0 z-10 items-center">
-      <Button classes="rounded-lg " text="nausea network" playButton={true} />
+    <header
+      className="fixed top-4 right-4 lg:top-8 lg:right-24 flex bg-beige justify-between z-10 cursor-pointer font-lack"
+      onMouseLeave={closeMenu}
+      ref={componentRef}
+    >
+      <div className="relative">
+        <div
+          className="flex flex-col relative after:absolute after:top-[100%] after:right-0 after:w-[calc(200%)] after:h-[20px] after:z-40"
+          onMouseEnter={openMenu}
+        >
+          <button onClick={toggleModal} className="flex items-center">
+            {session && (
+              <div className="w-4 h-4 rounded-full bg-red mr-2"></div>
+            )}
+            <div className="w-6 h-6">
+              <Account />
+            </div>
+          </button>
+        </div>
+      </div>
 
-      <Button
-        handler={handleClick}
-        text={`cart (${totalItems})`}
-        classes="!border-0 !p-0"
-        noHoverState={true}
-      />
-
-      <MiniCart open={open} handleClick={handleClick} />
+      <AccountMenu menuOpen={menuOpen} />
     </header>
   )
 }

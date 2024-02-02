@@ -1,10 +1,30 @@
 'use client'
-
+import { useEffect, useState } from 'react'
 import ProductList from '@/components/ProductList'
-import products from '@/products.json'
+import { supabase } from '@/supabaseClient'
 
 const Home = () => {
-  return <ProductList array={products} />
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase.from('products').select('*')
+      if (error) {
+        console.error(error)
+      }
+
+      setData(data)
+
+      if (error) {
+        console.error(error)
+      }
+
+      setData(data)
+    }
+
+    fetchData()
+  }, [])
+  return <ProductList products={data} />
 }
 
 export default Home
