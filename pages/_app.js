@@ -1,6 +1,6 @@
 'use client'
 
-import Layout from '@/components/layout'
+import Layout from '@/components/Layout'
 import { CartContext, UseCartState } from '@/hooks/UseCart'
 import { AuthContext, UseAuthState } from '@/hooks/UseAuth'
 import { ModalContext, UseModalState } from '@/hooks/UseModal'
