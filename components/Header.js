@@ -3,21 +3,21 @@ import { useCallback, useRef } from 'react'
 import { useState } from 'react'
 import Account from './Account'
 import AccountMenu from './AccountMenu'
-import { useAuth } from '@/hooks/useAuth'
-import useOnClickOutside from '@/hooks/useClickOutside'
+import { UseAuth } from '@/hooks/UseAuth'
+import UseClickOutside from '@/hooks/UseClickOutside'
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const openMenu = () => setMenuOpen(true)
   const closeMenu = () => setMenuOpen(false)
   const toggleModal = () => setMenuOpen(!menuOpen)
-  const { session } = useAuth()
+  const { session } = UseAuth()
 
   const componentRef = useRef()
 
   const handleClickOutside = useCallback(() => closeMenu(), [componentRef])
 
-  useOnClickOutside(componentRef, handleClickOutside)
+  UseClickOutside(componentRef, handleClickOutside)
 
   return (
     <header

@@ -6,7 +6,7 @@ import { useEffect } from 'react'
  * @param {Array} refs the element to to detect clicks outside of.
  * @param {Function} handler the function to fire when the ref is clicked ouside of
  */
-const useOnClickOutside = (ref, handler, trigger = '') => {
+const UseClickOutside = (ref, handler, trigger = '') => {
   useEffect(
     () => {
       const listener = (event) => {
@@ -44,4 +44,4 @@ const useOnClickOutside = (ref, handler, trigger = '') => {
   )
 }
 
-export default useOnClickOutside
+export default UseClickOutside

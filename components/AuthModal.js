@@ -1,6 +1,6 @@
 import ReactModal from 'react-modal'
 import { useState } from 'react'
-import { useModal } from '@/hooks/useModal'
+import { UseModal } from '@/hooks/UseModal'
 import cn from 'classnames'
 import SignInForm from './SignUpSignIn/SignInForm'
 import SignUpForm from './SignUpSignIn/SignUpForm'
@@ -8,7 +8,7 @@ import SignUpForm from './SignUpSignIn/SignUpForm'
 ReactModal.setAppElement('#__next')
 
 const Auth = ({ className }) => {
-  const { isModalOpen, toggleModal } = useModal()
+  const { isModalOpen, toggleModal } = UseModal()
   const [creatingAccount, setCreatingAccount] = useState(false)
   return (
     <ReactModal

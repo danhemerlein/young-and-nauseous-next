@@ -1,9 +1,9 @@
 import ProductCard from '@/components/ProductCard'
 import Record from '@/components/Record'
-import { useAuth } from '@/hooks/useAuth'
+import { UseAuth } from '@/hooks/UseAuth'
 
 const ProductList = ({ products }) => {
-  const { session } = useAuth()
+  const { session } = UseAuth()
 
   return (
     <div className="lg:grid lg:grid-cols-2">

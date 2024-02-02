@@ -1,7 +1,7 @@
 import './Hero.css'
 
 import dynamic from 'next/dynamic'
-import useWindowSize from '@/hooks/useWindowSize'
+import UseWindowSize from '@/hooks/UseWindowSize'
 
 const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
   ssr: false,
@@ -11,7 +11,7 @@ const Hero = () => {
   let baroque
   let graphic
 
-  let isMobile = useWindowSize()
+  let isMobile = UseWindowSize()
 
   let canvasWidth = isMobile ? 300 : 1200
   let canvasHeight = isMobile ? 300 : 600

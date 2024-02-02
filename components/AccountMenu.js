@@ -1,16 +1,16 @@
 import Image from 'next/image'
 import { supabase } from '@/supabaseClient'
 import cn from 'classnames'
-import { useAuth } from '@/hooks/useAuth'
-import { useModal } from '@/hooks/useModal'
+import { UseAuth } from '@/hooks/UseAuth'
+import { UseModal } from '@/hooks/UseModal'
 
 const AccountMenu = ({ menuOpen }) => {
   const handleLogOut = () => {
     supabase.auth.signOut()
   }
-  const { toggleModal } = useModal()
+  const { toggleModal } = UseModal()
 
-  const { session } = useAuth()
+  const { session } = UseAuth()
 
   const handleButton = () => {
     if (!session) {
