@@ -2,7 +2,6 @@
 import Heart from './Heart'
 import Typewriter from './Typewriter'
 import Image from 'next/image'
-import './Footer.css'
 
 const Footer = () => {
   return (

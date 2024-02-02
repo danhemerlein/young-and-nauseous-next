@@ -1,5 +1,3 @@
-import './Hero.css'
-
 import dynamic from 'next/dynamic'
 import UseWindowSize from '@/hooks/UseWindowSize'
 
