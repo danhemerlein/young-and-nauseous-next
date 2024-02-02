@@ -24,15 +24,13 @@ const AccountMenu = ({ menuOpen }) => {
   return (
     <div
       className={cn(
-        'transition-cubic-bezier absolute right-0 top-[calc(100%+1rem)] flex  w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
+        'transition-cubic-bezier absolute right-0 top-[calc(100%)] flex w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
         menuOpen && 'opacity-100',
       )}
     >
-      {session && (
-        <button className="text-left text-ink">create a mood ring</button>
-      )}
+      {session && <a className="link">create a mood ring</a>}
 
-      <button onClick={handleButton} className="w-full text-left text-ink">
+      <button onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}
       </button>
 

@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 
-import Hero from '@/components/Hero'
 import ProductList from '@/components/ProductList'
 import { supabase } from '@/supabaseClient'
 
@@ -28,7 +27,7 @@ const Home = () => {
   }, [])
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <ProductList products={data} />
     </>
   )

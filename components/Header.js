@@ -23,10 +23,11 @@ const Header = () => {
 
   return (
     <header
-      className="fixed right-4 top-4 z-10 flex cursor-pointer justify-between bg-beige font-lack lg:right-24 lg:top-8"
+      className="bg-transparent fixed right-4 top-4 z-10 flex w-[calc(100%-12rem)] cursor-pointer justify-between font-lack lg:right-24 lg:top-8"
       onMouseLeave={closeMenu}
       ref={componentRef}
     >
+      <h1 className="font-baroque text-[50px]">young and nauseous</h1>
       <div className="relative">
         <div
           className="relative flex flex-col after:absolute after:right-0 after:top-[100%] after:z-40 after:h-[20px] after:w-[calc(200%)]"

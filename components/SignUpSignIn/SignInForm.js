@@ -63,7 +63,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -73,7 +73,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInPassword"
           placeholder="your password"
           value={password}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setPassword(e.target.value)}
         />
 

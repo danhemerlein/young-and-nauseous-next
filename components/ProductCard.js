@@ -3,30 +3,50 @@
 import { UseModal } from '@/hooks/UseModal'
 
 const ProductCard = ({ product, index, session }) => {
-  const { title, bpm, isMoodRing } = product
+  const { title, bpm, is_mood_ring, stems_url, main_url } = product
   const { toggleModal } = UseModal()
 
   return (
-    <li className="text-ink flex flex-col justify-center items-center h-screen font-lack gap-4 z-10">
-      <h2 className="font-baroque lowercase text-[124px] relative z-10">
+    <li className="z-10 flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
+      <h2 className="relative z-10 font-baroque text-[124px] lowercase">
         {title}
 
-        <sup className="text-sm font-lack absolute right-[-45px] top-0 border-ink border rounded-full border-solid p-4 h-[30px] w-[30px] flex items-center justify-center">
+        <sup className="absolute right-[-45px] top-0 flex h-[30px] w-[30px] items-center justify-center rounded-full border border-solid border-ink p-4 font-lack text-sm">
           {index + 1}
         </sup>
       </h2>
+
+      {main_url && (
+        <a
+          className="link z-10"
+          href={main_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          download track as wav
+        </a>
+      )}
+      {stems_url && (
+        <a
+          className="link z-10"
+          href={stems_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          download stems as mp3
+        </a>
+      )}
+
       <p>{bpm}bpm</p>
-      <a className="cursor-pointer z-10">free download</a>
-      {/* need to avoid a nested ternary here */}
-      {isMoodRing ? (
-        !session ? (
-          <button onClick={toggleModal} className="text-sm z-10">
+
+      {is_mood_ring &&
+        (!session ? (
+          <button onClick={toggleModal} className="button z-10 max-w-[200px]">
             log in to create a mood ring
           </button>
         ) : (
-          <p className="text-sm z-10">create a mood ring</p>
-        )
-      ) : null}
+          <a className="link">create a mood ring</a>
+        ))}
     </li>
   )
 }

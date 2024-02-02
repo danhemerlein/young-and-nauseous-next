@@ -1,0 +1,25 @@
+.transition-cubic-bezier {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-property: all;
+}
+
+.hide-scrollbars {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  scrollbar-height: none; /* Firefox */
+}
+
+.hide-scrollbars::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  height: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+  display: none;
+}
+
+.input {
+  @apply mb-4 w-full rounded-sm border border-ink bg-reverse p-2;
+}
+
+.input:focus {
+  @apply outline-offset-2 outline-ink;
+}

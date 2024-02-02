@@ -72,7 +72,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -82,7 +82,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPassword"
           placeholder="password"
           value={password}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -92,7 +92,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPasswordConfirmation"
           placeholder="password"
           value={passwordConfirmation}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
 
