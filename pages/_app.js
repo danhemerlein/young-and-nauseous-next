@@ -1,12 +1,15 @@
+/* eslint-disable react/display-name */
 'use client'
 
 import Layout from '@/components/Layout'
-import { CartContext, UseCartState } from '@/hooks/UseCart'
 import { AuthContext, UseAuthState } from '@/hooks/UseAuth'
+import { CartContext, UseCartState } from '@/hooks/UseCart'
 import { ModalContext, UseModalState } from '@/hooks/UseModal'
+
 import '@/styles/Globals.css'
 
-export default function App({ Component }) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default ({ Component }) => {
   const cart = UseCartState()
   const session = UseAuthState()
   const modal = UseModalState()

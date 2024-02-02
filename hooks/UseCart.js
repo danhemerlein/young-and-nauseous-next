@@ -1,6 +1,6 @@
-import { useState, createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+
 import { initCheckout } from '@/lib/payments'
-// import products from '@/products.json'
 
 const defaultCart = {
   products: {},
@@ -93,7 +93,7 @@ export const UseCartState = () => {
   }
 }
 
-export function UseCart() {
+export const UseCart = () => {
   const cart = useContext(CartContext)
   return cart
 }

@@ -6,16 +6,11 @@ import { useEffect } from 'react'
  * @param {Array} refs the element to to detect clicks outside of.
  * @param {Function} handler the function to fire when the ref is clicked ouside of
  */
-const UseClickOutside = (ref, handler, trigger = '') => {
+const UseClickOutside = (ref, handler) => {
   useEffect(
     () => {
       const listener = (event) => {
         const shouldExit = !ref?.current || ref?.current?.contains(event.target)
-
-        if (trigger.length > 0 && !event.target.hasAttribute(trigger)) {
-          handler(event)
-          return
-        }
 
         // Do nothing if clicking ref's element or descendent elements
         if (shouldExit) {
@@ -25,8 +20,6 @@ const UseClickOutside = (ref, handler, trigger = '') => {
       }
 
       document.addEventListener('click', listener)
-      // do not add the focusin listener if trigger is passed in - custom focus trap will need to be implemented
-      if (trigger) return
       document.addEventListener('focusin', listener)
 
       return () => {
@@ -40,7 +33,7 @@ const UseClickOutside = (ref, handler, trigger = '') => {
     // ... callback/cleanup to run every render. It's not a big deal ...
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
-    [ref, handler]
+    [ref, handler],
   )
 }
 

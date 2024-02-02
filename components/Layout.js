@@ -1,8 +1,9 @@
 'use client'
 import localFont from '@next/font/local'
-import Footer from '@/components/Footer'
-import Hero from '@/components/Hero'
+
 import AuthModal from '@/components/AuthModal'
+import Footer from '@/components/Footer'
+
 import Header from './Header'
 
 const lack = localFont({
@@ -29,18 +30,17 @@ const baroque = localFont({
   variable: '--font-baroque',
 })
 
-export default function RootLayout({ children }) {
-  return (
-    <>
-      <main
-        className={`${lack.variable} ${baroque.variable} px-4 lg:px-24 bg-beige`}
-      >
-        <Header />
-        <Hero />
-        {children}
-        <AuthModal className={`${lack.variable} ${baroque.variable}`} />
-        <Footer />
-      </main>
-    </>
-  )
-}
+const Layout = ({ children }) => (
+  <>
+    <main
+      className={`${lack.variable} ${baroque.variable} bg-beige px-4 lg:px-24`}
+    >
+      <Header />
+      {children}
+      <AuthModal className={`${lack.variable} ${baroque.variable}`} />
+      <Footer />
+    </main>
+  </>
+)
+
+export default Layout

@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { UseModal } from '@/hooks/UseModal'
-import { supabase } from '@/supabaseClient'
+
 import Input from '@/components/SignUpSignIn/Input'
-import SubmitButton from './SubmitButton'
+import { UseModal } from '@/hooks/UseModal'
 import { validateEmail } from '@/lib/helper-functions'
+import { supabase } from '@/supabaseClient'
+
+import SubmitButton from './SubmitButton'
 
 const SignInForm = ({ setCreatingAccount }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -51,7 +53,7 @@ const SignInForm = ({ setCreatingAccount }) => {
       }}
     >
       <fieldset>
-        <legend className="text-lg mb-4 text-center">
+        <legend className="mb-4 text-center text-lg">
           sign in with email and password
         </legend>
 
@@ -61,7 +63,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -71,7 +73,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInPassword"
           placeholder="your password"
           value={password}
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -80,7 +82,7 @@ const SignInForm = ({ setCreatingAccount }) => {
         <button
           onClick={() => setCreatingAccount(true)}
           type="button"
-          className="text-center mt-8 underline cursor-pointer"
+          className="mt-8 cursor-pointer text-center underline"
         >
           or create an account
         </button>

@@ -1,6 +1,6 @@
 const frag = `
 
-	#ifdef GL_ES
+#ifdef GL_ES
 precision highp float;
 #endif
 

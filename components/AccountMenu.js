@@ -1,8 +1,9 @@
-import Image from 'next/image'
-import { supabase } from '@/supabaseClient'
 import cn from 'classnames'
+import Image from 'next/image'
+
 import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
+import { supabase } from '@/supabaseClient'
 
 const AccountMenu = ({ menuOpen }) => {
   const handleLogOut = () => {
@@ -23,15 +24,15 @@ const AccountMenu = ({ menuOpen }) => {
   return (
     <div
       className={cn(
-        'text-reverse bg-beige top-[calc(100%+1rem)] w-[150px] absolute  right-0 p-4 flex gap-4 flex-col border border-solid border-ink transition-opacity transition-cubic-bezier opacity-0',
-        menuOpen && 'opacity-100'
+        'transition-cubic-bezier absolute right-0 top-[calc(100%+1rem)] flex  w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
+        menuOpen && 'opacity-100',
       )}
     >
       {session && (
         <button className="text-left text-ink">create a mood ring</button>
       )}
 
-      <button onClick={handleButton} className="text-left text-ink w-full">
+      <button onClick={handleButton} className="w-full text-left text-ink">
         {session ? 'log out' : 'log in'}
       </button>
 
