@@ -2,8 +2,8 @@ import ReactModal from 'react-modal'
 import { useState } from 'react'
 import { useModal } from '@/hooks/useModal'
 import cn from 'classnames'
-import SignInForm from './SignInForm'
-import SignUpForm from './SignUpForm'
+import SignInForm from './SignUpSignIn/SignInForm'
+import SignUpForm from './SignUpSignIn/SignUpForm'
 
 ReactModal.setAppElement('#__next')
 

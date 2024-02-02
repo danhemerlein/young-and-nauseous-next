@@ -1,33 +1,57 @@
 import { useState } from 'react'
 import { useModal } from '@/hooks/useModal'
 import { supabase } from '@/supabaseClient'
-import Input from '@/components/Input'
+import Input from '@/components/SignUpSignIn/Input'
+import SubmitButton from './SubmitButton'
+import { validateEmail } from '@/lib/helper-functions'
 
 const SignUpForm = ({ setCreatingAccount }) => {
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const { toggleModal } = useModal()
+  const PASSWORD_MIN_LENGTH = 8
 
   const handleSignUp = async (email, password) => {
+    setIsLoading(true)
+    setError('')
+    setIsError(false)
+
     if (password !== passwordConfirmation) {
-      alert('Passwords do not match')
+      setIsError(true)
+      setError('passwords do not match')
       return
     }
+
+    if (password.length < PASSWORD_MIN_LENGTH) {
+      setIsError(true)
+      setError('password is too short')
+      return
+    }
+
+    if (!validateEmail(email)) {
+      setIsError(true)
+      setError('invalid email')
+      return
+    }
+
     try {
-      setLoading(true)
       const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
       })
       if (error) throw error
     } catch (error) {
-      alert(error.error_description || error.message)
+      setIsError(true)
+      setError(error.error_description || error.message)
+      return
     } finally {
-      setLoading(false)
-      toggleModal()
+      setIsLoading(false)
     }
+    toggleModal()
   }
 
   return (
@@ -70,15 +94,11 @@ const SignUpForm = ({ setCreatingAccount }) => {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
 
-        <p className="mb-8 text-sm">password must be at least 6 characters</p>
+        <p className="mb-8 text-sm">
+          password must be at least {PASSWORD_MIN_LENGTH} characters
+        </p>
 
-        <button
-          className="border-2 border-ink p-2 rounded-sm cursor-pointer transition-cubic-bezier bg-reverse text-ink hover:bg-ink hover:text-reverse w-full"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? <span>loading...</span> : <span>sign up</span>}
-        </button>
+        <SubmitButton isLoading={isLoading} isError={isError} error={error} />
 
         <button
           onClick={() => setCreatingAccount(false)}

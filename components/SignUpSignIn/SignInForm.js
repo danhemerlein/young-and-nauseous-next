@@ -1,28 +1,46 @@
 import { useState } from 'react'
 import { useModal } from '@/hooks/useModal'
 import { supabase } from '@/supabaseClient'
-import Input from '@/components/Input'
+import Input from '@/components/SignUpSignIn/Input'
+import SubmitButton from './SubmitButton'
+import { validateEmail } from '@/lib/helper-functions'
 
 const SignInForm = ({ setCreatingAccount }) => {
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { toggleModal } = useModal()
 
   const handleLogin = async (email, password) => {
+    setError('')
+    setIsError(false)
+
+    if (!validateEmail(email)) {
+      setIsError(true)
+      setError('invalid email')
+      return
+    }
+
     try {
-      setLoading(true)
+      setIsLoading(true)
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
-      if (error) throw error
+      if (error) {
+        throw error
+      }
     } catch (error) {
-      alert(error.error_description || error.message)
+      setIsError(true)
+      setError(error.error_description || error.message)
+      return
     } finally {
-      setLoading(false)
-      toggleModal()
+      setIsLoading(false)
     }
+
+    toggleModal()
   }
 
   return (
@@ -57,13 +75,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button
-          className="border-2 border-ink p-2 rounded-sm cursor-pointer transition-cubic-bezier bg-reverse text-ink hover:bg-ink hover:text-reverse w-full"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? <span>loading...</span> : <span>sign in</span>}
-        </button>
+        <SubmitButton loading={isLoading} isError={isError} error={error} />
 
         <button
           onClick={() => setCreatingAccount(true)}

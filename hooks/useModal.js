@@ -7,6 +7,9 @@ export const useModalState = () => {
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen)
+    isModalOpen
+      ? (document.body.style.overflow = 'auto')
+      : (document.body.style.overflow = 'hidden')
   }
 
   return {
