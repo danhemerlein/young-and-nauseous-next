@@ -1,7 +1,6 @@
 'use client'
 
 import { useModal } from '@/hooks/useModal'
-import { removeSpecialCharactersAndHandleize } from '@/lib/helper-functions'
 
 const ProductCard = ({ product, index, session }) => {
   const { title, bpm, isMoodRing } = product

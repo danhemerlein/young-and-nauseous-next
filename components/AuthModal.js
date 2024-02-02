@@ -4,7 +4,7 @@ import { useModal } from '@/hooks/useModal'
 import cn from 'classnames'
 import SignInForm from './SignInForm'
 import SignUpForm from './SignUpForm'
-import classNames from 'classnames'
+
 ReactModal.setAppElement('#__next')
 
 const Auth = ({ className }) => {

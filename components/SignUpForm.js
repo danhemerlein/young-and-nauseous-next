@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useModal } from '@/hooks/useModal'
 import { supabase } from '@/supabaseClient'
 
-function SignUpForm({ setCreatingAccount }) {
+const SignUpForm = ({ setCreatingAccount }) => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { toggleModal } = useModal()
 
   const handleSignUp = async (email, password) => {
     try {
@@ -18,6 +20,7 @@ function SignUpForm({ setCreatingAccount }) {
       alert(error.error_description || error.message)
     } finally {
       setLoading(false)
+      toggleModal()
     }
   }
   return (
