@@ -1,5 +1,10 @@
 'use client'
 import localFont from '@next/font/local'
+import Footer from '@/components/Footer'
+import Hero from '@/components/Hero'
+import AuthModal from '@/components/AuthModal'
+import '@/styles/Globals.css'
+import Header from './Header'
 
 const lack = localFont({
   src: [
@@ -24,12 +29,6 @@ const baroque = localFont({
   ],
   variable: '--font-baroque',
 })
-
-import Footer from '@/components/Footer'
-import Hero from '@/components/Hero'
-import AuthModal from '@/components/AuthModal'
-import '@/styles/globals.css'
-import Header from './Header'
 
 export default function RootLayout({ children }) {
   return (
