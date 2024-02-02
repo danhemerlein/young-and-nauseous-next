@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "eslint": "eslint --fix --ignore-path .prettierignore .",
+    "verify": "yarn lint-staged",
+    "prettier": "prettier --check . --write"
   },
   "dependencies": {
     "@next/font": "^14.1.0",
@@ -20,12 +22,31 @@
     "react-p5": "^1.4.1"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.1.6",
     "autoprefixer": "latest",
+    "eslint-plugin-prefer-arrow-functions": "^3.1.4",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",
     "postcss-import": "latest",
     "postcss-loader": "latest",
-    "tailwindcss": "latest"
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "tailwindcss": "latest",
+    "lint-staged": "^12.2.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "verify"
+  ],
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix --ignore-path .prettierignore --max-warnings=0 --no-ignore",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

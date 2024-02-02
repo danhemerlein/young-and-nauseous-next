@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+
 import UseWindowSize from '@/hooks/UseWindowSize'
 
 const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
@@ -60,7 +61,7 @@ const Hero = () => {
   }
 
   return (
-    <div className="hero flex items-center justify-center h-screen">
+    <div className="hero flex h-screen items-center justify-center">
       {/* <Sketch preload={preload} setup={setup} draw={draw} /> */}
     </div>
   )

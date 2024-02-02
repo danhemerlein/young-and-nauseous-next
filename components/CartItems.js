@@ -1,11 +1,12 @@
 import { UseCart } from '@/hooks/UseCart'
+
 import Button from './Button'
 
 const CartItems = () => {
   const { cart, updateItem } = UseCart()
 
   return (
-    <ul className="flex flex-col gap-4 mt-4">
+    <ul className="mt-4 flex flex-col gap-4">
       {Object.keys(cart.products).map((key) => {
         return (
           <li key={key} className="flex justify-between">

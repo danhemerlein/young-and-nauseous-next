@@ -1,10 +1,11 @@
 'use client'
-import { useCallback, useRef } from 'react'
-import { useState } from 'react'
-import Account from './Account'
-import AccountMenu from './AccountMenu'
+import { useCallback, useRef, useState } from 'react'
+
 import { UseAuth } from '@/hooks/UseAuth'
 import UseClickOutside from '@/hooks/UseClickOutside'
+
+import Account from './Account'
+import AccountMenu from './AccountMenu'
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -15,26 +16,27 @@ const Header = () => {
 
   const componentRef = useRef()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleClickOutside = useCallback(() => closeMenu(), [componentRef])
 
   UseClickOutside(componentRef, handleClickOutside)
 
   return (
     <header
-      className="fixed top-4 right-4 lg:top-8 lg:right-24 flex bg-beige justify-between z-10 cursor-pointer font-lack"
+      className="fixed right-4 top-4 z-10 flex cursor-pointer justify-between bg-beige font-lack lg:right-24 lg:top-8"
       onMouseLeave={closeMenu}
       ref={componentRef}
     >
       <div className="relative">
         <div
-          className="flex flex-col relative after:absolute after:top-[100%] after:right-0 after:w-[calc(200%)] after:h-[20px] after:z-40"
+          className="relative flex flex-col after:absolute after:right-0 after:top-[100%] after:z-40 after:h-[20px] after:w-[calc(200%)]"
           onMouseEnter={openMenu}
         >
           <button onClick={toggleModal} className="flex items-center">
             {session && (
-              <div className="w-4 h-4 rounded-full bg-red mr-2"></div>
+              <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
             )}
-            <div className="w-6 h-6">
+            <div className="h-6 w-6">
               <Account />
             </div>
           </button>

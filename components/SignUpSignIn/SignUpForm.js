@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { UseModal } from '@/hooks/UseModal'
-import { supabase } from '@/supabaseClient'
+
 import Input from '@/components/SignUpSignIn/Input'
-import SubmitButton from './SubmitButton'
+import { UseModal } from '@/hooks/UseModal'
 import { validateEmail } from '@/lib/helper-functions'
+import { supabase } from '@/supabaseClient'
+
+import SubmitButton from './SubmitButton'
 
 const SignUpForm = ({ setCreatingAccount }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -62,7 +64,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
       }}
     >
       <fieldset>
-        <legend className="text-lg mb-4 text-center">create account</legend>
+        <legend className="mb-4 text-center text-lg">create account</legend>
 
         <Input
           label="email"
@@ -70,7 +72,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -80,7 +82,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPassword"
           placeholder="password"
           value={password}
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -90,7 +92,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPasswordConfirmation"
           placeholder="password"
           value={passwordConfirmation}
-          className="mb-4 w-full border-2 border-ink p-2 rounded-sm bg-reverse"
+          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
 
@@ -103,7 +105,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
         <button
           onClick={() => setCreatingAccount(false)}
           type="button"
-          className="text-center mt-8 underline cursor-pointer"
+          className="mt-8 cursor-pointer text-center underline"
         >
           or log in
         </button>
