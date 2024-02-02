@@ -3,7 +3,6 @@ import localFont from '@next/font/local'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import AuthModal from '@/components/AuthModal'
-import '@/styles/Globals.css'
 import Header from './Header'
 
 const lack = localFont({

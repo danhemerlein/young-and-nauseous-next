@@ -4,6 +4,7 @@ import Layout from '@/components/Layout'
 import { CartContext, UseCartState } from '@/hooks/UseCart'
 import { AuthContext, UseAuthState } from '@/hooks/UseAuth'
 import { ModalContext, UseModalState } from '@/hooks/UseModal'
+import '@/styles/Globals.css'
 
 export default function App({ Component }) {
   const cart = UseCartState()
