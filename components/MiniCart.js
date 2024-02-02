@@ -1,10 +1,10 @@
-import { useCart } from '@/hooks/useCart'
+import { UseCart } from '@/hooks/UseCart'
 import CartItems from './CartItems'
 import cn from 'classnames'
 import Button from './Button'
 
 const MiniCart = ({ open, handleClick }) => {
-  const { checkout, subtotal } = useCart()
+  const { checkout, subtotal } = UseCart()
   return (
     <div
       className={cn(

@@ -1,10 +1,10 @@
 'use client'
 
-import { useModal } from '@/hooks/useModal'
+import { UseModal } from '@/hooks/UseModal'
 
 const ProductCard = ({ product, index, session }) => {
   const { title, bpm, isMoodRing } = product
-  const { toggleModal } = useModal()
+  const { toggleModal } = UseModal()
 
   return (
     <li className="text-ink flex flex-col justify-center items-center h-screen font-lack gap-4 z-10">

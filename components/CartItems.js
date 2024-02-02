@@ -1,8 +1,8 @@
-import { useCart } from '@/hooks/useCart'
+import { UseCart } from '@/hooks/UseCart'
 import Button from './Button'
 
 const CartItems = () => {
-  const { cart, updateItem } = useCart()
+  const { cart, updateItem } = UseCart()
 
   return (
     <ul className="flex flex-col gap-4 mt-4">

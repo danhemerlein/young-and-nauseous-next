@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useModal } from '@/hooks/useModal'
+import { UseModal } from '@/hooks/UseModal'
 import { supabase } from '@/supabaseClient'
 import Input from '@/components/SignUpSignIn/Input'
 import SubmitButton from './SubmitButton'
@@ -12,7 +12,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const { toggleModal } = useModal()
+  const { toggleModal } = UseModal()
   const PASSWORD_MIN_LENGTH = 8
 
   const handleSignUp = async (email, password) => {

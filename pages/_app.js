@@ -1,14 +1,15 @@
 'use client'
 
-import Layout from '@/components/layout'
-import { CartContext, useCartState } from '@/hooks/useCart'
-import { AuthContext, useAuthState } from '@/hooks/useAuth'
-import { ModalContext, useModalState } from '@/hooks/useModal'
+import Layout from '@/components/Layout'
+import { CartContext, UseCartState } from '@/hooks/UseCart'
+import { AuthContext, UseAuthState } from '@/hooks/UseAuth'
+import { ModalContext, UseModalState } from '@/hooks/UseModal'
+import '@/styles/Globals.css'
 
 export default function App({ Component }) {
-  const cart = useCartState()
-  const session = useAuthState()
-  const modal = useModalState()
+  const cart = UseCartState()
+  const session = UseAuthState()
+  const modal = UseModalState()
 
   return (
     <AuthContext.Provider value={session}>

@@ -8,7 +8,7 @@ const defaultCart = {
 
 export const CartContext = createContext()
 
-export const useCartState = () => {
+export const UseCartState = () => {
   const [cart, updateCart] = useState(defaultCart)
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export const useCartState = () => {
   }
 }
 
-export function useCart() {
+export function UseCart() {
   const cart = useContext(CartContext)
   return cart
 }

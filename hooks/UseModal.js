@@ -2,7 +2,7 @@ import { useState, useContext, createContext } from 'react'
 
 export const ModalContext = createContext()
 
-export const useModalState = () => {
+export const UseModalState = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const toggleModal = () => {
@@ -18,7 +18,7 @@ export const useModalState = () => {
   }
 }
 
-export const useModal = () => {
+export const UseModal = () => {
   const { isModalOpen, toggleModal } = useContext(ModalContext)
 
   return {
