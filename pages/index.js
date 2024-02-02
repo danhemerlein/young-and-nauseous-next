@@ -1,35 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react'
 
-import ProductList from '@/components/ProductList'
-import { supabase } from '@/supabaseClient'
+import Record from '@/components/Record'
 
 const Home = () => {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data, error } = await supabase.from('products').select('*')
-      if (error) {
-        console.error(error)
-      }
-
-      setData(data)
-
-      if (error) {
-        console.error(error)
-      }
-
-      setData(data)
-    }
-
-    fetchData()
-  }, [])
   return (
-    <>
-      {/* <Hero /> */}
-      <ProductList products={data} />
-    </>
+    <div className="lg:grid lg:grid-cols-2">
+      <Record />
+      {/* <ProductList /> */}
+    </div>
   )
 }
 

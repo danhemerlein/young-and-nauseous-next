@@ -1,10 +1,12 @@
 'use client'
 
+import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
 
-const ProductCard = ({ product, index, session }) => {
+const ProductCard = ({ product, index }) => {
   const { title, bpm, is_mood_ring, stems_url, main_url } = product
   const { toggleModal } = UseModal()
+  const session = UseAuth()
 
   return (
     <li className="z-10 flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">

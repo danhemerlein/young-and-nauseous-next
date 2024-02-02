@@ -1,9 +1,8 @@
 import { useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
-import { validateEmail } from '@/lib/helper-functions'
-import { supabase } from '@/supabaseClient'
 
 import SubmitButton from './SubmitButton'
 
@@ -16,6 +15,11 @@ const SignUpForm = ({ setCreatingAccount }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const { toggleModal } = UseModal()
   const PASSWORD_MIN_LENGTH = 8
+
+  const supabase = createClientComponentClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  )
 
   const handleSignUp = async (email, password) => {
     setIsLoading(true)
@@ -34,16 +38,19 @@ const SignUpForm = ({ setCreatingAccount }) => {
       return
     }
 
-    if (!validateEmail(email)) {
-      setIsError(true)
-      setError('invalid email')
-      return
-    }
+    // if (!validateEmail(email)) {
+    //   setIsError(true)
+    //   setError('invalid email')
+    //   return
+    // }
 
     try {
       const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       })
       if (error) throw error
     } catch (error) {
