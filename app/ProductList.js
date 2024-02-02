@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 
 import ProductCard from '@/components/ProductCard'
 
-ProductList = async () => {
+const ProductList = async () => {
   const supabase = createServerComponentClient({ cookies })
   const { data, error } = await supabase.from('products').select('*')
   if (error) {
@@ -12,7 +12,6 @@ ProductList = async () => {
 
   return (
     <ul>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
       {data.map((product, key) => {
         return <ProductCard key={product.id} product={product} index={key} />
       })}
