@@ -40,6 +40,12 @@ const AccountMenu = ({ menuOpen, session }) => {
         </Link>
       )}
 
+      {session && (
+        <Link className="link" href="/dashboard">
+          dashboard
+        </Link>
+      )}
+
       <button onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}
       </button>

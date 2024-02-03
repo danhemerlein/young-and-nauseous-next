@@ -5,7 +5,7 @@ const RangeInput = ({ label, min, max, value, step, cb }) => {
 
   return (
     <>
-      <label htmlFor="label">label</label>
+      <label htmlFor="label">{label}</label>
       <input
         type="range"
         min={min}

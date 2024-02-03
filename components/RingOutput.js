@@ -5,7 +5,9 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { UseModal } from '@/hooks/UseModal'
+import { getRandomElement, moods } from '@/lib/helper-functions'
 
+import Input from './SignUpSignIn/Input'
 import RangeInput from './RangeInput'
 import Ring from './Ring'
 
@@ -33,6 +35,7 @@ const RingOutput = () => {
   const [metalness, setMetalness] = useState(0.5)
   const [lightIntensity, setLightIntensity] = useState(Math.PI)
   const [dataUrl, setDataUrl] = useState('')
+  const [title, setTitle] = useState(getRandomElement(moods).toLowerCase())
 
   const toggleWireframe = () => {
     setWireframe(!wireframe)
@@ -74,6 +77,7 @@ const RingOutput = () => {
     const { data, error } = await supabase.from('rings').insert({
       user_id: userId,
       data_url: dataUrl,
+      title,
     })
   }
 
@@ -107,6 +111,16 @@ const RingOutput = () => {
       </Canvas>
       <div className="lg:max-w[150px] flex w-full flex-col justify-between gap-4 border border-solid border-ink  p-8 lg:w-[25%]">
         <div action="" className="flex flex-col gap-2">
+          <Input
+            label="set a mood"
+            type="text"
+            id="title"
+            placeholder={title}
+            value={title}
+            className="input placeholder:lowercase"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
           <RangeInput
             label="metalness"
             min="0"
@@ -134,23 +148,25 @@ const RingOutput = () => {
             cb={setLightIntensity}
           />
 
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 gap-4">
             {colors.map((color, key) => {
               return (
-                <div className="flex flex-col" key={color + key}>
-                  <label htmlFor={color + key}>color {key + 1}</label>
-                  <input
-                    type="color"
-                    id={color + key}
-                    name={color + key}
-                    value={colors[key].color}
-                    onChange={(e) => setColor(e, key)}
-                  />
+                <div className="flex items-end gap-2" key={color + key}>
+                  <div className="flex flex-col">
+                    <label htmlFor={color + key}>color {key + 1}</label>
+                    <input
+                      type="color"
+                      id={color + key}
+                      name={color + key}
+                      value={colors[key].color}
+                      onChange={(e) => setColor(e, key)}
+                    />
+                  </div>
                   {key > 0 && (
                     <button
                       type="button"
                       onClick={() => removeColor(key)}
-                      className="button h-8 w-8"
+                      className="button flex h-6 w-6 items-center justify-center text-sm"
                     >
                       &#x2715;
                     </button>
@@ -162,7 +178,7 @@ const RingOutput = () => {
 
           {colors.length < 4 && (
             <button type="button" onClick={handleColor} className="button">
-              +
+              add color
             </button>
           )}
 
