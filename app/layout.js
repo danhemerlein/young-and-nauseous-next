@@ -45,10 +45,6 @@ const RootLayout = async ({ children }) => {
             <Footer />
           </main>
         </AppState>
-        <script defer src="/scripts/glslcanvas.min.js" />
-        <script defer src="/scripts/include.js" />
-        <script defer src="/scripts/record-frag.js" />
-        <script defer src="/scripts/canvas.js" />
       </body>
     </html>
   )

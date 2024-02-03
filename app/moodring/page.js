@@ -1,11 +1,7 @@
-import NewRingOutput from '@/components/NewRingOutput'
+import RingOutput from '@/components/RingOutput'
 
 const MoodRing = () => {
-  return (
-    <>
-      <NewRingOutput />
-    </>
-  )
+  return <RingOutput />
 }
 
 export default MoodRing
