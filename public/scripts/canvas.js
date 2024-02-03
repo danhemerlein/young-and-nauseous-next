@@ -1,4 +1,4 @@
-const canvas = document.querySelector('canvas')
+const canvas = document.getElementById('#RecordCanvas')
 const sandbox = new GlslCanvas(canvas)
 
 const sizer = () => {

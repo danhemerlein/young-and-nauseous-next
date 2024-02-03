@@ -5,6 +5,7 @@ import ProductCard from '@/components/ProductCard'
 
 const ProductList = async () => {
   const supabase = createServerComponentClient({ cookies })
+
   const { data, error } = await supabase.from('products').select('*')
   if (error) {
     console.error(error)

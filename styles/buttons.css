@@ -1,6 +1,6 @@
 @layer components {
   .button {
-    @apply transition-cubic-bezier w-full cursor-pointer rounded-sm border border-solid border-ink bg-reverse p-2 text-ink transition-colors;
+    @apply transition-cubic-bezier w-full cursor-pointer rounded-sm border border-solid border-ink bg-reverse p-2 font-lack text-ink transition-colors;
   }
 
   .button:focus {

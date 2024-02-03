@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
 
@@ -47,7 +49,9 @@ const ProductCard = ({ product, index }) => {
             log in to create a mood ring
           </button>
         ) : (
-          <a className="link">create a mood ring</a>
+          <Link href="/moodring" className="link">
+            create a mood ring
+          </Link>
         ))}
     </li>
   )

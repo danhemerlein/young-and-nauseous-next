@@ -2,6 +2,7 @@
 
 import cn from 'classnames'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
@@ -11,6 +12,7 @@ const AccountMenu = ({ menuOpen }) => {
   const handleLogOut = () => {
     supabase.auth.signOut()
   }
+
   const { toggleModal } = UseModal()
 
   const { session } = UseAuth()
@@ -30,7 +32,11 @@ const AccountMenu = ({ menuOpen }) => {
         menuOpen && 'opacity-100',
       )}
     >
-      {session && <a className="link">create a mood ring</a>}
+      {session && (
+        <Link className="link" href="/moodring">
+          create a mood ring
+        </Link>
+      )}
 
       <button onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}

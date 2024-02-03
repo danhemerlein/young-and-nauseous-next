@@ -1,9 +1,9 @@
 import { useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
 import { validateEmail } from '@/lib/helper-functions'
-import { supabase } from '@/supabaseClient'
 
 import SubmitButton from './SubmitButton'
 
@@ -14,6 +14,26 @@ const SignInForm = ({ setCreatingAccount }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { toggleModal } = UseModal()
+
+  const supabase = createClientComponentClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  )
+
+  const clearUI = () => {
+    setIsLoading(false)
+    setIsError(false)
+  }
+
+  const passwordChangeHandler = (e) => {
+    clearUI()
+    setPassword(e.target.value)
+  }
+
+  const emailChangeHandler = (e) => {
+    clearUI()
+    setEmail(e.target.value)
+  }
 
   const handleLogin = async (email, password) => {
     setError('')
@@ -27,10 +47,12 @@ const SignInForm = ({ setCreatingAccount }) => {
 
     try {
       setIsLoading(true)
+
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
+
       if (error) {
         throw error
       }
@@ -64,7 +86,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           placeholder="email"
           value={email}
           className="input"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={emailChangeHandler}
         />
 
         <Input
@@ -74,7 +96,7 @@ const SignInForm = ({ setCreatingAccount }) => {
           placeholder="your password"
           value={password}
           className="input"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={passwordChangeHandler}
         />
 
         <SubmitButton loading={isLoading} isError={isError} error={error} />

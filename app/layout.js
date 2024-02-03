@@ -31,25 +31,27 @@ const baroque = localFont({
   variable: '--font-baroque',
 })
 
-const RootLayout = ({ children }) => (
-  <html>
-    <body
-      className={`${lack.variable} ${baroque.variable} bg-beige px-4 lg:px-24`}
-    >
-      <AppState>
-        <main>
-          <Header />
-          {children}
-          <AuthModal className={`${lack.variable} ${baroque.variable}`} />
-          <Footer />
-        </main>
-      </AppState>
-      <script defer src="/scripts/glslcanvas.min.js" />
-      <script defer src="/scripts/include.js" />
-      <script defer src="/scripts/record-frag.js" />
-      <script defer src="/scripts/canvas.js" />
-    </body>
-  </html>
-)
+const RootLayout = async ({ children }) => {
+  return (
+    <html>
+      <body
+        className={`${lack.variable} ${baroque.variable} bg-beige px-4 lg:px-24`}
+      >
+        <AppState>
+          <main>
+            <Header />
+            {children}
+            <AuthModal className={`${lack.variable} ${baroque.variable}`} />
+            <Footer />
+          </main>
+        </AppState>
+        <script defer src="/scripts/glslcanvas.min.js" />
+        <script defer src="/scripts/include.js" />
+        <script defer src="/scripts/record-frag.js" />
+        <script defer src="/scripts/canvas.js" />
+      </body>
+    </html>
+  )
+}
 
 export default RootLayout
