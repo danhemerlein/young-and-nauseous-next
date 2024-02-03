@@ -1,18 +1,30 @@
 'use client'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import Link from 'next/link'
 
-import { UseAuth } from '@/hooks/UseAuth'
 import UseClickOutside from '@/hooks/UseClickOutside'
 
 import Account from './Account'
 import AccountMenu from './AccountMenu'
 
-const Header = () => {
+const Header = ({ session }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const openMenu = () => setMenuOpen(true)
-  const closeMenu = () => setMenuOpen(false)
   const toggleModal = () => setMenuOpen(!menuOpen)
-  const { session } = UseAuth()
+  const closeMenu = () => setMenuOpen(false)
+
+  const supabase = createClientComponentClient()
+  const [clientSession, setClientSession] = useState(null)
+
+  useEffect(() => {
+    const isAuthenticatedClient = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      setClientSession(session)
+    }
+    isAuthenticatedClient()
+  })
 
   const componentRef = useRef()
 
@@ -23,17 +35,17 @@ const Header = () => {
 
   return (
     <header
-      className="fixed right-4 top-4 z-10 flex cursor-pointer justify-between bg-beige font-lack lg:right-24 lg:top-8"
-      onMouseLeave={closeMenu}
+      className="bg-transparent z-10 flex justify-between font-lack "
       ref={componentRef}
     >
+      <h1 className="font-baroque text-[50px]">
+        <Link href="/">young and nauseous</Link>
+      </h1>
+
       <div className="relative">
-        <div
-          className="relative flex flex-col after:absolute after:right-0 after:top-[100%] after:z-40 after:h-[20px] after:w-[calc(200%)]"
-          onMouseEnter={openMenu}
-        >
+        <div className="relative flex flex-col">
           <button onClick={toggleModal} className="flex items-center">
-            {session && (
+            {clientSession && (
               <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
             )}
             <div className="h-6 w-6">
@@ -41,9 +53,8 @@ const Header = () => {
             </div>
           </button>
         </div>
+        <AccountMenu menuOpen={menuOpen} session={clientSession} />
       </div>
-
-      <AccountMenu menuOpen={menuOpen} />
     </header>
   )
 }

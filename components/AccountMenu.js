@@ -1,17 +1,23 @@
+'use client'
+
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import cn from 'classnames'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
-import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
-import { supabase } from '@/supabaseClient'
 
-const AccountMenu = ({ menuOpen }) => {
-  const handleLogOut = () => {
-    supabase.auth.signOut()
+const AccountMenu = ({ menuOpen, session }) => {
+  const router = useRouter()
+  const supabase = createClientComponentClient()
+
+  const handleLogOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
   }
-  const { toggleModal } = UseModal()
 
-  const { session } = UseAuth()
+  const { toggleModal } = UseModal()
 
   const handleButton = () => {
     if (!session) {
@@ -24,15 +30,23 @@ const AccountMenu = ({ menuOpen }) => {
   return (
     <div
       className={cn(
-        'transition-cubic-bezier absolute right-0 top-[calc(100%+1rem)] flex  w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
+        'transition-cubic-bezier absolute right-0 top-full flex w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
         menuOpen && 'opacity-100',
       )}
     >
       {session && (
-        <button className="text-left text-ink">create a mood ring</button>
+        <Link className="link" href="/moodring">
+          create a mood ring
+        </Link>
       )}
 
-      <button onClick={handleButton} className="w-full text-left text-ink">
+      {session && (
+        <Link className="link" href="/dashboard">
+          dashboard
+        </Link>
+      )}
+
+      <button onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}
       </button>
 

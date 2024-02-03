@@ -1,7 +1,7 @@
 const Record = () => {
   return (
-    <div className="sticky top-0 flex items-center justify-center h-screen z-0">
-      <canvas className="h-full w-full"></canvas>
+    <div className="sticky top-0 z-0 flex h-screen items-center justify-center">
+      <canvas id="RecordCanvas" className="h-full w-full"></canvas>
     </div>
   )
 }

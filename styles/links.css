@@ -1,0 +1,13 @@
+@layer components {
+  .link {
+    @apply transition-cubic-bezier cursor-pointer text-ink underline decoration-ink underline-offset-2 transition-colors;
+  }
+
+  .link:focus {
+    @apply text-red decoration-red;
+  }
+
+  .link:hover {
+    @apply text-red decoration-red;
+  }
+}

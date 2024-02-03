@@ -1,0 +1,17 @@
+@layer components {
+  .button {
+    @apply transition-cubic-bezier w-full cursor-pointer rounded-sm border border-solid border-ink bg-reverse p-2 font-lack text-ink transition-colors;
+  }
+
+  .button:focus {
+    @apply outline-ink ring-offset-2;
+  }
+
+  .button:hover {
+    @apply bg-ink text-reverse;
+  }
+
+  .button[disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
+}

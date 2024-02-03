@@ -1,13 +1,16 @@
 import { useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
 import { validateEmail } from '@/lib/helper-functions'
-import { supabase } from '@/supabaseClient'
 
 import SubmitButton from './SubmitButton'
 
-const SignUpForm = ({ setCreatingAccount }) => {
+const SignUpForm = ({ setCreatingAccount, creatingAccount }) => {
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [error, setError] = useState('')
@@ -16,6 +19,11 @@ const SignUpForm = ({ setCreatingAccount }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const { toggleModal } = UseModal()
   const PASSWORD_MIN_LENGTH = 8
+
+  const supabase = createClientComponentClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  )
 
   const handleSignUp = async (email, password) => {
     setIsLoading(true)
@@ -44,7 +52,12 @@ const SignUpForm = ({ setCreatingAccount }) => {
       const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
       })
+      router.refresh()
+
       if (error) throw error
     } catch (error) {
       setIsError(true)
@@ -72,7 +85,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -82,7 +95,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPassword"
           placeholder="password"
           value={password}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setPassword(e.target.value)}
         />
 
@@ -92,7 +105,7 @@ const SignUpForm = ({ setCreatingAccount }) => {
           id="signUpPasswordConfirmation"
           placeholder="password"
           value={passwordConfirmation}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
+          className="input"
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
 
@@ -100,7 +113,12 @@ const SignUpForm = ({ setCreatingAccount }) => {
           password must be at least {PASSWORD_MIN_LENGTH} characters
         </p>
 
-        <SubmitButton isLoading={isLoading} isError={isError} error={error} />
+        <SubmitButton
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+          creatingAccount={creatingAccount}
+        />
 
         <button
           onClick={() => setCreatingAccount(false)}

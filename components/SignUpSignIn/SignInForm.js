@@ -1,19 +1,42 @@
 import { useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
 import { validateEmail } from '@/lib/helper-functions'
-import { supabase } from '@/supabaseClient'
 
 import SubmitButton from './SubmitButton'
 
-const SignInForm = ({ setCreatingAccount }) => {
+const SignInForm = ({ setCreatingAccount, creatingAccount }) => {
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { toggleModal } = UseModal()
+
+  const supabase = createClientComponentClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  )
+
+  const clearUI = () => {
+    setIsLoading(false)
+    setIsError(false)
+  }
+
+  const passwordChangeHandler = (e) => {
+    clearUI()
+    setPassword(e.target.value)
+  }
+
+  const emailChangeHandler = (e) => {
+    clearUI()
+    setEmail(e.target.value)
+  }
 
   const handleLogin = async (email, password) => {
     setError('')
@@ -27,10 +50,14 @@ const SignInForm = ({ setCreatingAccount }) => {
 
     try {
       setIsLoading(true)
+
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
+
+      router.refresh()
+
       if (error) {
         throw error
       }
@@ -63,8 +90,8 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInEmail"
           placeholder="email"
           value={email}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
-          onChange={(e) => setEmail(e.target.value)}
+          className="input"
+          onChange={emailChangeHandler}
         />
 
         <Input
@@ -73,11 +100,16 @@ const SignInForm = ({ setCreatingAccount }) => {
           id="signInPassword"
           placeholder="your password"
           value={password}
-          className="mb-4 w-full rounded-sm border-2 border-ink bg-reverse p-2"
-          onChange={(e) => setPassword(e.target.value)}
+          className="input"
+          onChange={passwordChangeHandler}
         />
 
-        <SubmitButton loading={isLoading} isError={isError} error={error} />
+        <SubmitButton
+          loading={isLoading}
+          isError={isError}
+          error={error}
+          creatingAccount={creatingAccount}
+        />
 
         <button
           onClick={() => setCreatingAccount(true)}
