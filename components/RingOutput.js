@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 
 import { UseAuth } from '@/hooks/UseAuth'
+import { UseModal } from '@/hooks/UseModal'
 import { supabase } from '@/supabaseClient'
 
 import RangeInput from './RangeInput'
@@ -11,6 +12,7 @@ import Ring from './Ring'
 
 const RingOutput = () => {
   const { session } = UseAuth()
+  const { toggleModal } = UseModal()
 
   const [wireframe, setWireframe] = useState(false)
 
@@ -51,12 +53,14 @@ const RingOutput = () => {
     setDataUrl(screenshot)
   }
 
-  const handleSave = () => {
-    console.log(session)
-    if (!session) return
+  const handleSave = async () => {
+    if (!session) {
+      toggleModal()
+      return
+    }
     const userId = session.user.id
-    console.log(userId)
-    const { data, error } = supabase.from('rings').insert({
+
+    const { data, error } = await supabase.from('rings').insert({
       user_id: userId,
       data_url: dataUrl,
     })

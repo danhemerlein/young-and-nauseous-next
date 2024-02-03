@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
@@ -7,7 +8,9 @@ import { validateEmail } from '@/lib/helper-functions'
 
 import SubmitButton from './SubmitButton'
 
-const SignInForm = ({ setCreatingAccount }) => {
+const SignInForm = ({ setCreatingAccount, creatingAccount }) => {
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [error, setError] = useState('')
@@ -52,6 +55,8 @@ const SignInForm = ({ setCreatingAccount }) => {
         email,
         password,
       })
+
+      router.refresh()
 
       if (error) {
         throw error
@@ -99,7 +104,12 @@ const SignInForm = ({ setCreatingAccount }) => {
           onChange={passwordChangeHandler}
         />
 
-        <SubmitButton loading={isLoading} isError={isError} error={error} />
+        <SubmitButton
+          loading={isLoading}
+          isError={isError}
+          error={error}
+          creatingAccount={creatingAccount}
+        />
 
         <button
           onClick={() => setCreatingAccount(true)}

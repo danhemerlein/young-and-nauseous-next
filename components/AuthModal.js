@@ -41,9 +41,15 @@ const Auth = ({ className }) => {
         </button>
 
         {creatingAccount ? (
-          <SignUpForm setCreatingAccount={setCreatingAccount} />
+          <SignUpForm
+            setCreatingAccount={setCreatingAccount}
+            creatingAccount={creatingAccount}
+          />
         ) : (
-          <SignInForm setCreatingAccount={setCreatingAccount} />
+          <SignInForm
+            setCreatingAccount={setCreatingAccount}
+            creatingAccount={creatingAccount}
+          />
         )}
       </div>
     </ReactModal>

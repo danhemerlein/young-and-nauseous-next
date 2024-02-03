@@ -1,8 +1,13 @@
-const SubmitButton = ({ isLoading, isError, error }) => {
+const SubmitButton = ({ isLoading, isError, error, creatingAccount }) => {
+  console.log(creatingAccount)
   return (
     <>
       <button className="button" type="submit" disabled={isLoading || isError}>
-        {isLoading ? <span>loading...</span> : <span>sign in</span>}
+        {isLoading ? (
+          <span>loading...</span>
+        ) : (
+          <span>{creatingAccount ? 'create account' : 'sign in'}</span>
+        )}
       </button>
 
       {isError && <p className="mt-4 lowercase text-red">{error}</p>}

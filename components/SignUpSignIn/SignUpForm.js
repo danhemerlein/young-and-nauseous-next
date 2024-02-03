@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
 
 import Input from '@/components/SignUpSignIn/Input'
 import { UseModal } from '@/hooks/UseModal'
+import { validateEmail } from '@/lib/helper-functions'
 
 import SubmitButton from './SubmitButton'
 
-const SignUpForm = ({ setCreatingAccount }) => {
+const SignUpForm = ({ setCreatingAccount, creatingAccount }) => {
+  const router = useRouter()
+
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [error, setError] = useState('')
@@ -38,11 +42,11 @@ const SignUpForm = ({ setCreatingAccount }) => {
       return
     }
 
-    // if (!validateEmail(email)) {
-    //   setIsError(true)
-    //   setError('invalid email')
-    //   return
-    // }
+    if (!validateEmail(email)) {
+      setIsError(true)
+      setError('invalid email')
+      return
+    }
 
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -52,6 +56,8 @@ const SignUpForm = ({ setCreatingAccount }) => {
           emailRedirectTo: `${window.location.origin}/auth/callback`,
         },
       })
+      router.refresh()
+
       if (error) throw error
     } catch (error) {
       setIsError(true)
@@ -107,7 +113,12 @@ const SignUpForm = ({ setCreatingAccount }) => {
           password must be at least {PASSWORD_MIN_LENGTH} characters
         </p>
 
-        <SubmitButton isLoading={isLoading} isError={isError} error={error} />
+        <SubmitButton
+          isLoading={isLoading}
+          isError={isError}
+          error={error}
+          creatingAccount={creatingAccount}
+        />
 
         <button
           onClick={() => setCreatingAccount(false)}

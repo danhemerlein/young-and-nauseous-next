@@ -21,6 +21,7 @@ const Header = () => {
   const handleClickOutside = useCallback(() => closeMenu(), [componentRef])
 
   UseClickOutside(componentRef, handleClickOutside)
+  console.log(menuOpen)
 
   return (
     <header
@@ -31,6 +32,7 @@ const Header = () => {
       <h1 className="font-baroque text-[50px]">
         <Link href="/">young and nauseous</Link>
       </h1>
+
       <div className="relative">
         <div
           className="relative flex flex-col after:absolute after:right-0 after:top-[100%] after:z-40 after:h-[20px] after:w-[calc(200%)]"
@@ -45,9 +47,8 @@ const Header = () => {
             </div>
           </button>
         </div>
+        <AccountMenu menuOpen={menuOpen} />
       </div>
-
-      <AccountMenu menuOpen={menuOpen} />
     </header>
   )
 }

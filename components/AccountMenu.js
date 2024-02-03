@@ -1,16 +1,21 @@
 'use client'
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
-import { supabase } from '@/supabaseClient'
 
 const AccountMenu = ({ menuOpen }) => {
-  const handleLogOut = () => {
-    supabase.auth.signOut()
+  const router = useRouter()
+  const supabase = createClientComponentClient()
+
+  const handleLogOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
   }
 
   const { toggleModal } = UseModal()
@@ -28,7 +33,7 @@ const AccountMenu = ({ menuOpen }) => {
   return (
     <div
       className={cn(
-        'transition-cubic-bezier absolute right-0 top-[calc(100%)] flex w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
+        'transition-cubic-bezier absolute right-0 top-full flex w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
         menuOpen && 'opacity-100',
       )}
     >
