@@ -6,10 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
 
-const AccountMenu = ({ menuOpen }) => {
+const AccountMenu = ({ menuOpen, session }) => {
   const router = useRouter()
   const supabase = createClientComponentClient()
 
@@ -19,8 +18,6 @@ const AccountMenu = ({ menuOpen }) => {
   }
 
   const { toggleModal } = UseModal()
-
-  const { session } = UseAuth()
 
   const handleButton = () => {
     if (!session) {

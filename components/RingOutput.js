@@ -1,18 +1,29 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
-import { supabase } from '@/supabaseClient'
 
 import RangeInput from './RangeInput'
 import Ring from './Ring'
 
 const RingOutput = () => {
-  const { session } = UseAuth()
   const { toggleModal } = UseModal()
+
+  const supabase = createClientComponentClient()
+  const [clientSession, setClientSession] = useState(null)
+
+  useEffect(() => {
+    const isAuthenticatedClient = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      setClientSession(session)
+    }
+    isAuthenticatedClient()
+  })
 
   const [wireframe, setWireframe] = useState(false)
 
@@ -54,18 +65,16 @@ const RingOutput = () => {
   }
 
   const handleSave = async () => {
-    if (!session) {
+    if (!clientSession) {
       toggleModal()
       return
     }
-    const userId = session.user.id
+    const userId = clientSession.user.id
 
     const { data, error } = await supabase.from('rings').insert({
       user_id: userId,
       data_url: dataUrl,
     })
-
-    console.log(data, error)
   }
 
   return (
@@ -169,7 +178,7 @@ const RingOutput = () => {
           </label>
 
           <button className="button" onClick={handleSave}>
-            {session ? 'save' : 'login to save'}
+            {clientSession ? 'save' : 'login to save'}
           </button>
         </div>
       </div>

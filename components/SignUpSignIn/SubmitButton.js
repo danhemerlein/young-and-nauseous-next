@@ -1,5 +1,4 @@
 const SubmitButton = ({ isLoading, isError, error, creatingAccount }) => {
-  console.log(creatingAccount)
   return (
     <>
       <button className="button" type="submit" disabled={isLoading || isError}>

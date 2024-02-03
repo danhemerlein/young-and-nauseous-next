@@ -1,14 +1,27 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
 
-import { UseAuth } from '@/hooks/UseAuth'
 import { UseModal } from '@/hooks/UseModal'
 
 const ProductCard = ({ product, index }) => {
   const { title, bpm, is_mood_ring, stems_url, main_url } = product
   const { toggleModal } = UseModal()
-  const session = UseAuth()
+
+  const supabase = createClientComponentClient()
+  const [clientSession, setClientSession] = useState(null)
+
+  useEffect(() => {
+    const isAuthenticatedClient = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      setClientSession(session)
+    }
+    isAuthenticatedClient()
+  })
 
   return (
     <li className="z-10 flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
@@ -44,7 +57,7 @@ const ProductCard = ({ product, index }) => {
       <p>{bpm}bpm</p>
 
       {is_mood_ring &&
-        (!session ? (
+        (!clientSession ? (
           <button onClick={toggleModal} className="button z-10 max-w-[200px]">
             log in to create a mood ring
           </button>
