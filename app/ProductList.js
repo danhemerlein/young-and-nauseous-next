@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import ProductCard from '@/components/ProductCard'
 
 const ProductList = async () => {
+  cookies().getAll() // Keep cookies in the JS execution context for Next.js build
   const supabase = createServerComponentClient({ cookies })
 
   const { data, error } = await supabase.from('products').select('*')
@@ -12,7 +13,7 @@ const ProductList = async () => {
   }
 
   return (
-    <ul>
+    <ul className="mt-[-100vh] lg:mt-0">
       {data.map((product, key) => {
         return <ProductCard key={product.id} product={product} index={key} />
       })}
