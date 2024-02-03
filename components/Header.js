@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <header
-      className="bg-transparent fixed right-4 top-4 z-10 flex w-[calc(100%-2rem)] cursor-pointer justify-between font-lack lg:right-24 lg:top-8 lg:w-[calc(100%-12rem)]"
+      className="bg-transparent z-10 flex justify-between font-lack "
       onMouseLeave={closeMenu}
       ref={componentRef}
     >

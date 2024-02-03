@@ -4,6 +4,7 @@ import AppState from '@/components/AppState'
 import AuthModal from '@/components/AuthModal'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import ScriptLoaded from '@/components/ScriptLoaded'
 
 import '@/styles/Globals.css'
 
@@ -35,7 +36,7 @@ const RootLayout = async ({ children }) => {
   return (
     <html>
       <body
-        className={`${lack.variable} ${baroque.variable} bg-beige px-4 lg:px-24`}
+        className={`${lack.variable} ${baroque.variable} bg-beige px-4 pt-4 lg:px-24 lg:pt-12`}
       >
         <AppState>
           <main>
@@ -45,6 +46,7 @@ const RootLayout = async ({ children }) => {
             <Footer />
           </main>
         </AppState>
+        <ScriptLoaded />
       </body>
     </html>
   )

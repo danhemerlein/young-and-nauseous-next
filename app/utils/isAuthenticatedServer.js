@@ -1,12 +1,8 @@
 import supabaseServer from './supabaseServer'
 
-export const isAuthentificatedServer = async () => {
+export const isAuthenticatedServer = async () => {
   const {
     data: { session },
   } = await supabaseServer().auth.getSession()
-  if (!session) {
-    return false
-  } else {
-    return true
-  }
+  return session
 }
