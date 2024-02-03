@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 
 import { UseAuth } from '@/hooks/UseAuth'
+import { supabase } from '@/supabaseClient'
 
+import RangeInput from './RangeInput'
 import Ring from './Ring'
 
 const RingOutput = () => {
@@ -17,13 +19,10 @@ const RingOutput = () => {
   const [roughness, setRoughness] = useState(0.5)
   const [metalness, setMetalness] = useState(0.5)
   const [lightIntensity, setLightIntensity] = useState(Math.PI)
+  const [dataUrl, setDataUrl] = useState('')
 
   const toggleWireframe = () => {
     setWireframe(!wireframe)
-  }
-
-  const handleInputChange = (e, setterFunction) => {
-    setterFunction(e.target.value)
   }
 
   const setColor = (e, key) => {
@@ -49,8 +48,20 @@ const RingOutput = () => {
 
     gl.render(scene, camera)
     const screenshot = gl.domElement.toDataURL()
+    setDataUrl(screenshot)
+  }
 
-    console.log(screenshot)
+  const handleSave = () => {
+    console.log(session)
+    if (!session) return
+    const userId = session.user.id
+    console.log(userId)
+    const { data, error } = supabase.from('rings').insert({
+      user_id: userId,
+      data_url: dataUrl,
+    })
+
+    console.log(data, error)
   }
 
   return (
@@ -82,37 +93,34 @@ const RingOutput = () => {
         />
       </Canvas>
       <div className="lg:max-w[150px] flex w-full flex-col justify-between gap-4 border border-solid border-ink  p-8 lg:w-[25%]">
-        <form action="" className="flex flex-col gap-2">
-          <label htmlFor="metalness">metalness</label>
-          <input
-            type="range"
+        <div action="" className="flex flex-col gap-2">
+          <RangeInput
+            label="metalness"
             min="0"
             max="1"
             value={metalness}
             step="0.01"
-            id="metalness"
-            onChange={(e) => handleInputChange(e, setMetalness)}
+            cb={setMetalness}
           />
-          <label htmlFor="roughness">roughness</label>
-          <input
-            type="range"
+
+          <RangeInput
+            label="roughness"
             min="0"
             max="1"
             value={roughness}
             step="0.01"
-            id="roughness"
-            onChange={(e) => handleInputChange(e, setRoughness)}
+            cb={setRoughness}
           />
-          <label htmlFor="lightIntensity">light intensity</label>
-          <input
-            type="range"
+
+          <RangeInput
+            label="lightIntensity"
             min="0"
             max="100"
             value={lightIntensity}
             step="1"
-            id="lightIntensity"
-            onChange={(e) => handleInputChange(e, setLightIntensity)}
+            cb={setLightIntensity}
           />
+
           <div className="grid grid-cols-2">
             {colors.map((color, key) => {
               return (
@@ -156,17 +164,10 @@ const RingOutput = () => {
             />
           </label>
 
-          <button
-            type="submit"
-            className="button"
-            onClick={() => {
-              gl.render(scene, camera)
-              const screenshot = gl.domElement.toDataURL()
-            }}
-          >
+          <button className="button" onClick={handleSave}>
             {session ? 'save' : 'login to save'}
           </button>
-        </form>
+        </div>
       </div>
     </div>
   )
