@@ -44,7 +44,13 @@ const Header = ({ session }) => {
 
       <div className="relative">
         <div className="relative flex flex-col">
-          <button onClick={toggleModal} className="flex items-center">
+          <button
+            type="button"
+            name="account"
+            aria-controls="account-menu"
+            onClick={toggleModal}
+            className="flex items-center"
+          >
             {clientSession && (
               <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
             )}

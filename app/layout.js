@@ -34,7 +34,56 @@ const baroque = localFont({
 
 const RootLayout = async ({ children }) => {
   return (
-    <html id="__next" className="hide-scrollbars">
+    <html id="__next" className="hide-scrollbars" lang="en">
+      <head>
+        <title>young and nauseous</title>
+        <meta charset="utf-8" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@youngandnauseous" />
+        <meta name="twitter:title" content="young and nauseous" />
+        <meta
+          name="twitter:description"
+          content="young and nauseous online sample library"
+        />
+
+        <meta name="title" content="youngandnauseo.us" />
+        <meta
+          name="description"
+          content="young and nauseous online sample library"
+        />
+
+        <meta property="og:title" content="dan hemerlein" />
+        <meta
+          name="og:description"
+          content="young and nauseous online sample library"
+        />
+
+        <meta property="og:url" content="https://www.youngandnauseo.us/" />
+        <meta
+          property="og:image"
+          content="https://youngandnauseo.us/images/angel-boy.jpg"
+        />
+
+        <meta
+          name="twitter:image"
+          content="https://youngandnauseo.us/images/angel-boy.jpg"
+        />
+        <meta
+          name="twitter:image:alt"
+          content="A handfrawn illustration of Saturn."
+        />
+
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖤</text></svg>"
+        />
+      </head>
       <body
         className={`${lack.variable} ${baroque.variable} bg-beige px-4 pt-4 lg:px-24 lg:pt-12`}
       >
