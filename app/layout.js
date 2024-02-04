@@ -62,12 +62,12 @@ const RootLayout = async ({ children }) => {
         <meta property="og:url" content="https://www.youngandnauseo.us/" />
         <meta
           property="og:image"
-          content="https://youngandnauseo.us/images/angel-boy.jpg"
+          content="https://young-and-nauseous-next-lake.vercel.app/images/angel-boy.jpg"
         />
 
         <meta
           name="twitter:image"
-          content="https://youngandnauseo.us/images/angel-boy.jpg"
+          content="https://young-and-nauseous-next-lake.vercel.app/images/angel-boy.jpg"
         />
         <meta
           name="twitter:image:alt"
