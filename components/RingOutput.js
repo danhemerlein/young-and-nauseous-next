@@ -109,7 +109,7 @@ const RingOutput = () => {
           metalness={metalness}
         />
       </Canvas>
-      <div className="lg:max-w[150px] flex w-full flex-col justify-between gap-4 border border-solid border-ink  p-8 lg:w-[25%]">
+      <div className="lg:max-w-36 flex w-full flex-col justify-between gap-4 border border-solid border-ink p-8 lg:w-[25%]">
         <div action="" className="flex flex-col gap-2">
           <Input
             label="set a mood"

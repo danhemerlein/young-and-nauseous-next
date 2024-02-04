@@ -34,7 +34,7 @@ const baroque = localFont({
 
 const RootLayout = async ({ children }) => {
   return (
-    <html>
+    <html id="__next" className="hide-scrollbars">
       <body
         className={`${lack.variable} ${baroque.variable} bg-beige px-4 pt-4 lg:px-24 lg:pt-12`}
       >

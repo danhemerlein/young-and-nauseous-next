@@ -4,6 +4,8 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
+import Typewriter from './Typewriter'
+
 const DashboardImageGrid = ({ rings }) => {
   const supabase = createClientComponentClient()
   const router = useRouter()
@@ -30,18 +32,23 @@ const DashboardImageGrid = ({ rings }) => {
   }, [supabase, router])
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid h-screen grid-cols-2">
       {rings?.map((ring, key) => {
         return (
           <div key={key}>
-            {ring.title && <h3>{ring.title}</h3>}
-
             <Image
               height={600}
               width={600}
               src={ring.data_url}
               alt={ring.title}
             ></Image>
+            {ring.title && (
+              <Typewriter
+                className="text-center font-lack"
+                text={ring.title}
+                delay={300}
+              ></Typewriter>
+            )}
           </div>
         )
       })}

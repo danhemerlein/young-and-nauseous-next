@@ -26,19 +26,19 @@ const Header = ({ session }) => {
     isAuthenticatedClient()
   })
 
-  const componentRef = useRef()
+  const headerRef = useRef()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleClickOutside = useCallback(() => closeMenu(), [componentRef])
+  const handleClickOutside = useCallback(() => closeMenu(), [headerRef])
 
-  UseClickOutside(componentRef, handleClickOutside)
+  UseClickOutside(headerRef, handleClickOutside)
 
   return (
     <header
-      className="bg-transparent z-10 flex justify-between font-lack "
-      ref={componentRef}
+      className="bg-transparent z-50 flex justify-between font-lack "
+      ref={headerRef}
     >
-      <h1 className="font-baroque text-[50px]">
+      <h1 className="font-baroque text-[3.2rem]">
         <Link href="/">young and nauseous</Link>
       </h1>
 

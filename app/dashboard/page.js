@@ -27,7 +27,6 @@ const Dashboard = async () => {
 
   return (
     <>
-      <h2 className="font-lack">your rings:</h2>
       <DashboardImageGrid rings={data} />
     </>
   )

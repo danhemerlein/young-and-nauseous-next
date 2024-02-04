@@ -24,18 +24,18 @@ const ProductCard = ({ product, index }) => {
   })
 
   return (
-    <li className="z-10 flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
-      <h2 className="relative z-10 font-baroque text-[60px] lowercase lg:text-[124px]">
+    <li className="product-card  flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
+      <h2 className="relative  font-baroque text-[3.2rem] lowercase lg:text-[6.4rem]">
         {title}
 
-        <sup className="absolute right-[-45px] top-0 flex h-[30px] w-[30px] items-center justify-center rounded-full border border-solid border-ink p-4 font-lack text-sm">
+        <sup className="absolute right-[-2.5rem] top-0 flex h-8 w-8 items-center justify-center rounded-full border border-solid border-ink p-4 font-lack text-sm">
           {index + 1}
         </sup>
       </h2>
 
       {main_url && (
         <a
-          className="link z-10"
+          className="link"
           href={main_url}
           target="_blank"
           rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const ProductCard = ({ product, index }) => {
       )}
       {stems_url && (
         <a
-          className="link z-10"
+          className="link"
           href={stems_url}
           target="_blank"
           rel="noopener noreferrer"
@@ -54,15 +54,15 @@ const ProductCard = ({ product, index }) => {
         </a>
       )}
 
-      <p className="z-10">{bpm}bpm</p>
+      <p>{bpm}bpm</p>
 
       {is_mood_ring &&
         (!clientSession ? (
-          <button onClick={toggleModal} className="button z-10 max-w-[200px]">
+          <button onClick={toggleModal} className="link  text-center">
             log in to create a mood ring
           </button>
         ) : (
-          <Link href="/moodring" className="link">
+          <Link href="/moodring" className="link ">
             create a mood ring
           </Link>
         ))}
