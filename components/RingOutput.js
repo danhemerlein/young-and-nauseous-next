@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { UseModal } from '@/hooks/UseModal'
 import { getRandomElement, moods } from '@/lib/helper-functions'
+
+import {
+  authStateChange,
+  isAuthenticatedClient,
+} from '../app/utils/isAuthenticatedClient'
 
 import Input from './SignUpSignIn/Input'
 import RangeInput from './RangeInput'
@@ -14,18 +18,15 @@ import Ring from './Ring'
 const RingOutput = () => {
   const { toggleModal } = UseModal()
 
-  const supabase = createClientComponentClient()
   const [clientSession, setClientSession] = useState(null)
 
   useEffect(() => {
-    const isAuthenticatedClient = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
+    isAuthenticatedClient().then((session) => {
       setClientSession(session)
-    }
-    isAuthenticatedClient()
-  })
+    })
+
+    authStateChange(setClientSession)
+  }, [])
 
   const [wireframe, setWireframe] = useState(false)
 

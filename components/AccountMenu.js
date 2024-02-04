@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 
 import { UseModal } from '@/hooks/UseModal'
 
-const AccountMenu = ({ menuOpen, session }) => {
+const AccountMenu = ({ menuOpen, clientSession }) => {
   const router = useRouter()
   const supabase = createClientComponentClient()
 
@@ -20,7 +20,7 @@ const AccountMenu = ({ menuOpen, session }) => {
   const { toggleModal } = UseModal()
 
   const handleButton = () => {
-    if (!session) {
+    if (!clientSession) {
       toggleModal()
     } else {
       handleLogOut()
@@ -36,7 +36,7 @@ const AccountMenu = ({ menuOpen, session }) => {
         menuOpen && 'opacity-100',
       )}
     >
-      {session && (
+      {clientSession && (
         <Link
           tabIndex={menuOpen ? '0' : '-1'}
           className="link"
@@ -46,9 +46,9 @@ const AccountMenu = ({ menuOpen, session }) => {
         </Link>
       )}
 
-      {session && (
+      {clientSession && (
         <Link
-          tabindex={menuOpen ? '0' : '-1'}
+          tabIndex={menuOpen ? '0' : '-1'}
           className="link"
           href="/dashboard"
         >
@@ -57,10 +57,10 @@ const AccountMenu = ({ menuOpen, session }) => {
       )}
 
       <button disabled={!menuOpen} onClick={handleButton} className="button">
-        {session ? 'log out' : 'log in'}
+        {clientSession ? 'log out' : 'log in'}
       </button>
 
-      {session && (
+      {clientSession && (
         <Image
           src="/images/angel-boy.jpg"
           alt="Handrawn illustration of Saturn."

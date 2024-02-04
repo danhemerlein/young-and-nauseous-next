@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
 
 import { UseModal } from '@/hooks/UseModal'
@@ -9,19 +7,6 @@ import { UseModal } from '@/hooks/UseModal'
 const ProductCard = ({ product, index }) => {
   const { title, bpm, is_mood_ring, stems_url, main_url } = product
   const { toggleModal } = UseModal()
-
-  const supabase = createClientComponentClient()
-  const [clientSession, setClientSession] = useState(null)
-
-  useEffect(() => {
-    const isAuthenticatedClient = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
-      setClientSession(session)
-    }
-    isAuthenticatedClient()
-  })
 
   return (
     <li className="product-card  flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
