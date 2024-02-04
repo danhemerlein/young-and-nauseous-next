@@ -1,30 +1,31 @@
 'use client'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
 
 import UseClickOutside from '@/hooks/UseClickOutside'
 
+import {
+  authStateChange,
+  isAuthenticatedClient,
+} from '../app/utils/isAuthenticatedClient'
+
 import Account from './Account'
 import AccountMenu from './AccountMenu'
 
-const Header = ({ session }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const toggleModal = () => setMenuOpen(!menuOpen)
   const closeMenu = () => setMenuOpen(false)
 
-  const supabase = createClientComponentClient()
   const [clientSession, setClientSession] = useState(null)
 
   useEffect(() => {
-    const isAuthenticatedClient = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
+    isAuthenticatedClient().then((session) => {
       setClientSession(session)
-    }
-    isAuthenticatedClient()
-  })
+    })
+
+    authStateChange(setClientSession)
+  }, [])
 
   const headerRef = useRef()
 
@@ -60,7 +61,7 @@ const Header = ({ session }) => {
             </div>
           </button>
         </div>
-        <AccountMenu menuOpen={menuOpen} session={clientSession} />
+        <AccountMenu menuOpen={menuOpen} clientSession={clientSession} />
       </div>
     </header>
   )
