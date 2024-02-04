@@ -40,7 +40,7 @@ const DashboardImageGrid = ({ rings }) => {
               height={600}
               width={600}
               src={ring.data_url}
-              alt={ring.title}
+              alt={ring.title || 'mood ring'}
             ></Image>
             {ring.title && (
               <Typewriter

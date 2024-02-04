@@ -38,7 +38,7 @@ const AccountMenu = ({ menuOpen, session }) => {
     >
       {session && (
         <Link
-          tabindex={menuOpen ? '0' : '-1'}
+          tabIndex={menuOpen ? '0' : '-1'}
           className="link"
           href="/moodring"
         >

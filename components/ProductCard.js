@@ -56,16 +56,11 @@ const ProductCard = ({ product, index }) => {
 
       <p>{bpm}bpm</p>
 
-      {is_mood_ring &&
-        (!clientSession ? (
-          <button onClick={toggleModal} className="link  text-center">
-            log in to create a mood ring
-          </button>
-        ) : (
-          <Link href="/moodring" className="link ">
-            create a mood ring
-          </Link>
-        ))}
+      {is_mood_ring && (
+        <Link href="/moodring" className="link ">
+          create a mood ring
+        </Link>
+      )}
     </li>
   )
 }
