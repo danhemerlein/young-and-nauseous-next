@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## young and nauseous
 
-## Getting Started
+### Background / Purpose
 
-First, run the development server:
+This site is the online portfolio of my art/music/code project `young and nauseous` Visitors can download full tracks and stems from young and nauseous releases. Visitors can also interact with the mood ring creator at `/moodring` Authenticated users can save PNGs of mood rings they've created and view/download them at `/dashboard`
+
+### Stack
+
+Next.js, Tailwind, Supabase, Three.js, GlslCanvas, Vercel
+
+### Getting Started
+
+1. clone this repo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:danhemerlein/young-and-nauseous-next.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. cd into project directory
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+cd young-and-nauseous-next
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. install dependencies
 
-## Learn More
+```bash
+yarn add
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. create .env.local
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+touch .env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. populate .env.local
 
-## Deploy on Vercel
+6. run development server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+yarn dev
+```
