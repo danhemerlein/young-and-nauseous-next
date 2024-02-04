@@ -30,7 +30,7 @@ const AccountMenu = ({ menuOpen, session }) => {
   return (
     <div
       className={cn(
-        'transition-cubic-bezier absolute right-0 top-full flex w-[150px] flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
+        'transition-cubic-bezier absolute right-0 top-full z-50 flex w-36 flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
         menuOpen && 'opacity-100',
       )}
     >

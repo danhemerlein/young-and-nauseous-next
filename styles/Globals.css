@@ -5,3 +5,21 @@
 @import 'footer.css';
 @import 'buttons.css';
 @import 'links.css';
+
+.hide-scrollbars {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  scrollbar-height: none; /* Firefox */
+}
+
+.hide-scrollbars::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  height: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+  display: none;
+}
+
+.product-card {
+  -webkit-transform: translate3d(0, 0, 0);
+  z-index: 999;
+}

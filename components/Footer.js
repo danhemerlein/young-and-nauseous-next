@@ -6,7 +6,7 @@ import Typewriter from './Typewriter'
 
 const Footer = () => {
   return (
-    <footer className="relative flex h-screen flex-col justify-between pb-4 lg:block lg:pb-12">
+    <footer className="footer relative flex h-screen flex-col justify-between pb-4 lg:block lg:pb-12">
       <div className="flex h-full flex-col lg:grid lg:grid-cols-2">
         <div className="jusify-between flex flex-col lg:h-full">
           <div className="flex flex-grow flex-col justify-between">

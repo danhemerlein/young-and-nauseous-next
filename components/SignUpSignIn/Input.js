@@ -6,14 +6,16 @@ const Input = ({
   value,
   onChange,
   className,
+  required = true,
 }) => {
   return (
     <>
-      <label htmlFor={id} className="block mb-2">
+      <label htmlFor={id} className="mb-2 block">
         {label}
       </label>
 
       <input
+        required={required}
         className={className}
         type={type}
         id={id}

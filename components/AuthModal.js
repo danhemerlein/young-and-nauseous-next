@@ -8,7 +8,7 @@ import { UseModal } from '@/hooks/UseModal'
 import SignInForm from './SignUpSignIn/SignInForm'
 import SignUpForm from './SignUpSignIn/SignUpForm'
 
-// ReactModal.setAppElement('#__next')
+ReactModal.setAppElement('#__next')
 
 const Auth = ({ className }) => {
   const { isModalOpen, toggleModal } = UseModal()
@@ -19,7 +19,7 @@ const Auth = ({ className }) => {
       onRequestClose={toggleModal}
       className={{
         base: cn(
-          'transition-cubic-bezier relative flex min-h-[500px] w-[500px] items-center justify-center border border-solid border-ink bg-reverse p-4 font-lack text-ink opacity-0 duration-500 lg:p-24',
+          'transition-cubic-bezier relative flex min-h-[32rem] w-[32rem] items-center justify-center border border-solid border-ink bg-reverse p-4 font-lack text-ink opacity-0 duration-500 lg:p-24',
           className,
         ),
         afterOpen: cn('!opacity-100', '!translate-y-0'),

@@ -85,6 +85,7 @@ const SignInForm = ({ setCreatingAccount, creatingAccount }) => {
         </legend>
 
         <Input
+          required={true}
           label="email"
           type="email"
           id="signInEmail"
@@ -95,6 +96,7 @@ const SignInForm = ({ setCreatingAccount, creatingAccount }) => {
         />
 
         <Input
+          required={true}
           label="password"
           type="password"
           id="signInPassword"

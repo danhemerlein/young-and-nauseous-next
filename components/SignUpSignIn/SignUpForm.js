@@ -80,6 +80,7 @@ const SignUpForm = ({ setCreatingAccount, creatingAccount }) => {
         <legend className="mb-4 text-center text-lg">create account</legend>
 
         <Input
+          require={true}
           label="email"
           type="email"
           id="signUpEmail"
@@ -90,6 +91,7 @@ const SignUpForm = ({ setCreatingAccount, creatingAccount }) => {
         />
 
         <Input
+          require={true}
           label="password"
           type="password"
           id="signUpPassword"
@@ -100,6 +102,7 @@ const SignUpForm = ({ setCreatingAccount, creatingAccount }) => {
         />
 
         <Input
+          require={true}
           label="re-enter password"
           type="password"
           id="signUpPasswordConfirmation"
