@@ -37,18 +37,26 @@ const AccountMenu = ({ menuOpen, session }) => {
       )}
     >
       {session && (
-        <Link className="link" href="/moodring">
+        <Link
+          tabindex={menuOpen ? '0' : '-1'}
+          className="link"
+          href="/moodring"
+        >
           create a mood ring
         </Link>
       )}
 
       {session && (
-        <Link className="link" href="/dashboard">
+        <Link
+          tabindex={menuOpen ? '0' : '-1'}
+          className="link"
+          href="/dashboard"
+        >
           dashboard
         </Link>
       )}
 
-      <button onClick={handleButton} className="button">
+      <button disabled={!menuOpen} onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}
       </button>
 

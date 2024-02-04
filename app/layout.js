@@ -37,7 +37,7 @@ const RootLayout = async ({ children }) => {
     <html id="__next" className="hide-scrollbars" lang="en">
       <head>
         <title>young and nauseous</title>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@youngandnauseous" />
