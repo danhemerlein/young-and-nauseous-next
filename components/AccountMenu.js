@@ -29,24 +29,34 @@ const AccountMenu = ({ menuOpen, session }) => {
 
   return (
     <div
+      id="account-menu"
+      aria-hidden={!menuOpen}
       className={cn(
         'transition-cubic-bezier absolute right-0 top-full z-50 flex w-36 flex-col gap-4 border border-solid border-ink bg-beige p-4 text-reverse opacity-0 transition-opacity',
         menuOpen && 'opacity-100',
       )}
     >
       {session && (
-        <Link className="link" href="/moodring">
+        <Link
+          tabIndex={menuOpen ? '0' : '-1'}
+          className="link"
+          href="/moodring"
+        >
           create a mood ring
         </Link>
       )}
 
       {session && (
-        <Link className="link" href="/dashboard">
+        <Link
+          tabindex={menuOpen ? '0' : '-1'}
+          className="link"
+          href="/dashboard"
+        >
           dashboard
         </Link>
       )}
 
-      <button onClick={handleButton} className="button">
+      <button disabled={!menuOpen} onClick={handleButton} className="button">
         {session ? 'log out' : 'log in'}
       </button>
 

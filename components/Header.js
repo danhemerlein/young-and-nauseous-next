@@ -38,13 +38,20 @@ const Header = ({ session }) => {
       className="bg-transparent z-50 flex justify-between font-lack "
       ref={headerRef}
     >
-      <h1 className="font-baroque text-[3.2rem]">
+      {/* min height specified to avoid large layout shifts */}
+      <h1 className="min-height-[3.2rem] font-baroque text-[3.2rem]">
         <Link href="/">young and nauseous</Link>
       </h1>
 
       <div className="relative">
         <div className="relative flex flex-col">
-          <button onClick={toggleModal} className="flex items-center">
+          <button
+            type="button"
+            aria-label="account"
+            aria-controls="account-menu"
+            onClick={toggleModal}
+            className="flex items-center"
+          >
             {clientSession && (
               <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
             )}
