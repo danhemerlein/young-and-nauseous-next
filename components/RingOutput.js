@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { UseModal } from '@/hooks/UseModal'
 import { getRandomElement, moods } from '@/lib/helper-functions'
@@ -16,9 +17,10 @@ import RangeInput from './RangeInput'
 import Ring from './Ring'
 
 const RingOutput = () => {
-  const { toggleModal } = UseModal()
+  const supabase = createClientComponentClient()
 
   const [clientSession, setClientSession] = useState(null)
+  const { toggleModal } = UseModal()
 
   useEffect(() => {
     isAuthenticatedClient().then((session) => {
@@ -60,7 +62,7 @@ const RingOutput = () => {
     setColors(newColors)
   }
 
-  const Foo = () => {
+  const UrlSetter = () => {
     const { gl, scene, camera } = useThree()
 
     gl.render(scene, camera)
@@ -68,24 +70,30 @@ const RingOutput = () => {
     setDataUrl(screenshot)
   }
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault()
+
     if (!clientSession) {
       toggleModal()
       return
     }
+
     const userId = clientSession.user.id
 
-    const { data, error } = await supabase.from('rings').insert({
-      user_id: userId,
-      data_url: dataUrl,
-      title,
-    })
+    const { data, error } = await supabase
+      .from('rings')
+      .insert({
+        user_id: userId,
+        data_url: dataUrl,
+        title,
+      })
+      .select()
   }
 
   return (
     <div className="flex h-screen flex-col items-center justify-between gap-8 font-lack lg:flex-row">
       <Canvas className="h-2xl w-2xl">
-        <Foo />
+        <UrlSetter />
         <ambientLight intensity={lightIntensity / 2} />
 
         <spotLight
@@ -111,7 +119,7 @@ const RingOutput = () => {
         />
       </Canvas>
       <div className="lg:max-w-36 flex w-full flex-col justify-between gap-4 border border-solid border-ink p-8 lg:w-[25%]">
-        <div action="" className="flex flex-col gap-2">
+        <form onSubmit={handleSave} className="flex flex-col gap-2">
           <Input
             label="set a mood"
             type="text"
@@ -194,10 +202,10 @@ const RingOutput = () => {
             />
           </label>
 
-          <button className="button" onClick={handleSave}>
+          <button type="submit" className="button">
             {clientSession ? 'save' : 'login to save'}
           </button>
-        </div>
+        </form>
       </div>
     </div>
   )
