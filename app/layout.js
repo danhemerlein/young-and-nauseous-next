@@ -1,4 +1,5 @@
 import localFont from '@next/font/local'
+import { Analytics } from '@vercel/analytics/react'
 
 import AppState from '@/components/AppState'
 import AuthModal from '@/components/AuthModal'
@@ -96,6 +97,7 @@ const RootLayout = async ({ children }) => {
           </main>
         </AppState>
         <ScriptLoaded />
+        <Analytics />
       </body>
     </html>
   )
