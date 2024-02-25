@@ -8,7 +8,7 @@ import { UseModal } from '@/hooks/UseModal'
 import SignInForm from './SignUpSignIn/SignInForm'
 import SignUpForm from './SignUpSignIn/SignUpForm'
 
-ReactModal.setAppElement('#__next')
+// ReactModal.setAppElement('#__next')
 
 const Auth = ({ className }) => {
   const { isModalOpen, toggleModal } = UseModal()

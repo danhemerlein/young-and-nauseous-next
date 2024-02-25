@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 pb-4 lg:grid lg:lg:grid-cols-2 lg:gap-0">
+      <div className="flex flex-col pb-4 lg:grid lg:lg:grid-cols-2 lg:gap-0">
         <div className="flex justify-between">
           <p className="font-lack text-xs">
             music & site by&nbsp;

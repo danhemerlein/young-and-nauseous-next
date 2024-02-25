@@ -15,3 +15,21 @@
     @apply cursor-not-allowed opacity-50;
   }
 }
+
+@layer components {
+  .button-red {
+    @apply transition-cubic-bezier w-full max-w-xs cursor-pointer rounded-sm border border-solid border-ink bg-ink p-2 font-lack text-red transition-colors;
+  }
+
+  .button-red:focus {
+    @apply bg-red text-ink outline-ink ring-offset-2;
+  }
+
+  .button-red:hover {
+    @apply bg-red text-ink;
+  }
+
+  .button-red[disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
