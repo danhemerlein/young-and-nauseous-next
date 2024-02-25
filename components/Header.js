@@ -43,26 +43,27 @@ const Header = () => {
       <h1 className="min-height-[3.2rem] font-baroque text-[3.2rem]">
         <Link href="/">young and nauseous</Link>
       </h1>
-
-      <div className="relative">
-        <div className="relative flex flex-col">
-          <button
-            type="button"
-            aria-label="account"
-            aria-controls="account-menu"
-            onClick={toggleModal}
-            className="flex items-center"
-          >
-            {clientSession && (
-              <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
-            )}
-            <div className="h-6 w-6">
-              <Account />
-            </div>
-          </button>
+      {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
+        <div className="relative">
+          <div className="relative flex flex-col">
+            <button
+              type="button"
+              aria-label="account"
+              aria-controls="account-menu"
+              onClick={toggleModal}
+              className="flex items-center"
+            >
+              {clientSession && (
+                <div className="mr-2 h-4 w-4 rounded-full bg-red"></div>
+              )}
+              <div className="h-6 w-6">
+                <Account />
+              </div>
+            </button>
+          </div>
+          <AccountMenu menuOpen={menuOpen} clientSession={clientSession} />
         </div>
-        <AccountMenu menuOpen={menuOpen} clientSession={clientSession} />
-      </div>
+      )}
     </header>
   )
 }
