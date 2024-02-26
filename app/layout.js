@@ -90,9 +90,13 @@ const RootLayout = async ({ children }) => {
       >
         <AppState>
           <main>
-            <Header />
+            {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
+              <Header />
+            )}
             {children}
-            <AuthModal className={`${lack.variable} ${baroque.variable}`} />
+            {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
+              <AuthModal className={`${lack.variable} ${baroque.variable}`} />
+            )}
             <Footer />
           </main>
         </AppState>
