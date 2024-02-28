@@ -1,6 +1,8 @@
 'use client'
 import Image from 'next/image'
 
+import { footerLinks } from '@/public/data/footer-links'
+
 import Heart from './Heart'
 import Typewriter from './Typewriter'
 
@@ -36,7 +38,7 @@ const Footer = () => {
               height="400"
             />
 
-            <div className="hidden lg:mt-6 lg:block">
+            <div className="hidden lg:block">
               <Heart />
             </div>
           </div>
@@ -46,7 +48,7 @@ const Footer = () => {
             <p className="ml-14 font-lack lg:text-2xl">
               <a
                 href="https://gitlab.com/velvetyne/lack"
-                className="transition-colors duration-300 ease-linear hover:text-red"
+                className="link"
                 target="_blank"
               >
                 lack
@@ -55,7 +57,7 @@ const Footer = () => {
             <p className="ml-14 font-baroque text-6xl">
               <a
                 href="https://www.fonts.com/font/itc/young-baroque"
-                className="transition-colors duration-300 ease-linear hover:text-red"
+                className="link"
                 target="_blank"
               >
                 young baroque
@@ -69,13 +71,28 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col pb-4 lg:grid lg:lg:grid-cols-2 lg:gap-0">
-        <div className="flex justify-between">
-          <p className="font-lack text-xs">
+      <div className="flex flex-col pb-4 font-lack lg:grid lg:lg:grid-cols-2 lg:gap-0">
+        <div className="flex flex-col justify-between text-sm">
+          <div className="mb-4 grid grid-cols-3 gap-2 lg:flex lg:gap-4 ">
+            {footerLinks.map((link, index) => {
+              return (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="dotted-link"
+                  target="_blank"
+                >
+                  {link.dsp}
+                </a>
+              )
+            })}
+          </div>
+
+          <p className="text-sm">
             music & site by&nbsp;
             <a
               href="https://danhemerlein.com"
-              className="transition-colors duration-300 ease-linear hover:text-red"
+              className="dotted-link"
               target="_blank"
             >
               dan hemerlein

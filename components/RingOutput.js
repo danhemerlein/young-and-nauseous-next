@@ -201,10 +201,11 @@ const RingOutput = () => {
               onChange={toggleWireframe}
             />
           </label>
-
-          <button type="submit" className="button">
-            {clientSession ? 'save' : 'login to save'}
-          </button>
+          {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
+            <button type="submit" className="button">
+              {clientSession ? 'save' : 'login to save'}
+            </button>
+          )}
         </form>
       </div>
     </div>

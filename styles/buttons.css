@@ -33,3 +33,13 @@
     @apply cursor-not-allowed opacity-50;
   }
 }
+
+@layer components {
+  .dotted-link {
+    @apply transition-cubic-bezier italic underline decoration-dotted underline-offset-2 transition-colors hover:text-red focus:text-red;
+  }
+
+  .link {
+    @apply transition-cubic-bezier no-underline transition-colors duration-300 ease-linear hover:text-red;
+  }
+}
