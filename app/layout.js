@@ -1,8 +1,6 @@
 import localFont from '@next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 
-import AppState from '@/components/AppState'
-import AuthModal from '@/components/AuthModal'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import ScriptLoaded from '@/components/ScriptLoaded'
@@ -86,20 +84,13 @@ const RootLayout = async ({ children }) => {
         />
       </head>
       <body
-        className={`${lack.variable} ${baroque.variable} bg-beige px-4 pt-4 lg:px-24 lg:pt-12`}
+        className={`${lack.variable} ${baroque.variable} bg-beige p-4 lg:px-24 lg:pt-12`}
       >
-        <AppState>
-          <main>
-            {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
-              <Header />
-            )}
-            {children}
-            {process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true' && (
-              <AuthModal className={`${lack.variable} ${baroque.variable}`} />
-            )}
-            <Footer />
-          </main>
-        </AppState>
+        <main>
+          <Header />
+          {children}
+          <Footer />
+        </main>
         <ScriptLoaded />
         <Analytics />
       </body>

@@ -4,17 +4,14 @@ import Image from 'next/image'
 import { footerLinks } from '@/public/data/footer-links'
 
 import Heart from './Heart'
-import Typewriter from './Typewriter'
 
 const Footer = () => {
   return (
-    <footer className="footer relative flex h-screen flex-col justify-between pb-4 lg:block lg:pb-12">
+    <footer className="footer relative flex h-screen flex-col justify-between lg:block lg:pb-12">
       <div className="flex h-full flex-col lg:grid lg:grid-cols-2">
         <div className="jusify-between flex flex-col lg:h-full">
           <div className="flex flex-grow flex-col justify-between">
-            <h2 className="font-lack uppercase text-ink">
-              <Typewriter text="y&n" delay={600} />
-            </h2>
+            <h2 className="font-lack uppercase text-ink">y&n</h2>
           </div>
         </div>
 
@@ -71,7 +68,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex flex-col pb-4 font-lack lg:grid lg:lg:grid-cols-2 lg:gap-0">
+      <div className="flex flex-col font-lack lg:grid lg:lg:grid-cols-2 lg:gap-0 lg:pb-4">
         <div className="flex flex-col justify-between text-sm">
           <div className="mb-4 grid grid-cols-3 gap-2 lg:flex lg:gap-4 ">
             {footerLinks.map((link, index) => {
@@ -101,10 +98,10 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-grow items-end justify-between">
-          <p className="font-lack text-xs">
+          <p className="font-lack text-sm">
             recorded & coded in brooklyn new york
           </p>
-          <p className="font-lack text-xs">est. 2020</p>
+          <p className="font-lack text-sm">est. 2020</p>
         </div>
       </div>
     </footer>
