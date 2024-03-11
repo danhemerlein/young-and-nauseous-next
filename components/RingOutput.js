@@ -5,12 +5,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 
 import { getRandomElement, moods } from '@/lib/helper-functions'
 
-import {
-  authStateChange,
-  isAuthenticatedClient,
-} from '../app/utils/isAuthenticatedClient'
-
-import Input from './SignUpSignIn/Input'
+import Input from './Input'
 import RangeInput from './RangeInput'
 import Ring from './Ring'
 
