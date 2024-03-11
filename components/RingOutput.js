@@ -1,35 +1,15 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-import { UseModal } from '@/hooks/UseModal'
 import { getRandomElement, moods } from '@/lib/helper-functions'
 
-import {
-  authStateChange,
-  isAuthenticatedClient,
-} from '../app/utils/isAuthenticatedClient'
-
-import Input from './SignUpSignIn/Input'
+import Input from './Input'
 import RangeInput from './RangeInput'
 import Ring from './Ring'
 
 const RingOutput = () => {
-  const supabase = createClientComponentClient()
-
-  const [clientSession, setClientSession] = useState(null)
-  const { toggleModal } = UseModal()
-
-  useEffect(() => {
-    isAuthenticatedClient().then((session) => {
-      setClientSession(session)
-    })
-
-    authStateChange(setClientSession)
-  }, [])
-
   const [wireframe, setWireframe] = useState(false)
 
   const [colors, setColors] = useState([{ color: '#C23B22', stop: 0.0 }])
@@ -70,25 +50,7 @@ const RingOutput = () => {
     setDataUrl(screenshot)
   }
 
-  const handleSave = async (e) => {
-    e.preventDefault()
-
-    if (!clientSession) {
-      toggleModal()
-      return
-    }
-
-    const userId = clientSession.user.id
-
-    const { data, error } = await supabase
-      .from('rings')
-      .insert({
-        user_id: userId,
-        data_url: dataUrl,
-        title,
-      })
-      .select()
-  }
+  const handleSave = async (e) => {}
 
   return (
     <div className="flex h-screen flex-col items-center justify-between gap-8 font-lack lg:flex-row">

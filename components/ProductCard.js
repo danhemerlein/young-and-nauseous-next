@@ -2,18 +2,12 @@
 
 import Link from 'next/link'
 
-import { UseModal } from '@/hooks/UseModal'
-
 const ProductCard = ({ product, index }) => {
   const { title, bpm, is_mood_ring, stems_url, main_url } = product
-  const { toggleModal } = UseModal()
-
-  const showMoodRing =
-    is_mood_ring && process.env.NEXT_PUBLIC_SHOW_ACCOUNT_FEATURES === 'true'
 
   return (
     <li className="product-card  flex h-screen flex-col items-center justify-center gap-4 font-lack text-ink">
-      <h2 className="relative  font-baroque text-[3.2rem] lowercase lg:text-[6.4rem]">
+      <h2 className="relative font-baroque text-[3.2rem] lowercase lg:text-[6.4rem]">
         {title}
 
         <sup className="absolute right-[-2.5rem] top-0 flex h-8 w-8 items-center justify-center rounded-full border border-solid border-ink p-4 font-lack text-sm">
@@ -44,7 +38,7 @@ const ProductCard = ({ product, index }) => {
 
       <p>{bpm}bpm</p>
 
-      {showMoodRing && (
+      {is_mood_ring && (
         <Link href="/moodring" className="link">
           create a mood ring
         </Link>
